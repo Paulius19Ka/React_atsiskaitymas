@@ -1,4 +1,4 @@
-import { createContext, useEffect, useReducer } from "react";
+import { createContext, useEffect, useReducer, useState } from "react";
 import { ChildProp, User, UsersContextTypes } from "../../types";
 
 type ActionTypes = 
@@ -21,6 +21,16 @@ const UsersContext = createContext<UsersContextTypes | undefined>(undefined);
 const UsersProvider = ({ children }: ChildProp) => {
 
   const [users, dispatch] = useReducer(reducer, []);
+  const [loggedInUser, setLoggedInUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    fetch(`http://localhost:8080/users`)
+      .then(res => res.json())
+      .then((data: User[]) => dispatch({
+        type: 'setData',
+        data
+      }));
+  }, []);
 
   const addUser = (newUser: User) => {
     fetch(`http://localhost:8080/users`, {
@@ -36,20 +46,13 @@ const UsersProvider = ({ children }: ChildProp) => {
     })
   }
 
-  useEffect(() => {
-    fetch(`http://localhost:8080/users`)
-      .then(res => res.json())
-      .then((data: User[]) => dispatch({
-        type: 'setData',
-        data
-      }));
-  }, []);
-
   return (
     <UsersContext.Provider
       value={{
         users,
-        addUser
+        addUser,
+        loggedInUser,
+        setLoggedInUser
       }}
     >
       { children }

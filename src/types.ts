@@ -6,7 +6,9 @@ export type ChildProp = {
 
 export type UsersContextTypes = {
   users: User[],
-  addUser: (newUser: User) => void
+  addUser: (newUser: User) => void,
+  loggedInUser: User | null,
+  setLoggedInUser: React.Dispatch<React.SetStateAction<User | null>>
 }
 
 export type User = {
