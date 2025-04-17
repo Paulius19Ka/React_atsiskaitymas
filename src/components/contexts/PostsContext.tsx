@@ -25,6 +25,33 @@ const PostsProvider = ({ children }: ChildProp) => {
 
   const [posts, dispatch] = useReducer(reducer, []);
 
+  const addPost = (newPost: Post) => {
+    fetch(`http://localhost:8080/posts`, {
+      method: "POST",
+      headers: {
+        "Content-Type":"application/json"
+      },
+      body: JSON.stringify(newPost)
+    });
+    dispatch({
+      type: "addPost",
+      newPost
+    });
+  };
+
+  const deletePost = (id: Post['id']) => {
+    fetch(`http://localhost:8080/posts/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type":"application/json"
+      }
+    });
+    dispatch({
+      type: 'deletePost',
+      id
+    });
+  };
+
   useEffect(() => {
     fetch(`http://localhost:8080/posts`)
       .then(res => res.json())
@@ -37,7 +64,9 @@ const PostsProvider = ({ children }: ChildProp) => {
   return (
     <PostsContext.Provider
       value={{
-        posts
+        posts,
+        addPost,
+        deletePost
       }}
     >
       { children }

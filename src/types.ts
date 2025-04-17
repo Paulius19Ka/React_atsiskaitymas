@@ -13,7 +13,9 @@ export type UsersContextTypes = {
 }
 
 export type PostsContextTypes = {
-  posts: Post[]
+  posts: Post[],
+  addPost: (newPost: Post) => void,
+  deletePost: (id: Post["id"]) => void
 }
 
 export type User = {
