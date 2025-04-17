@@ -9,7 +9,7 @@ import { UsersContextTypes } from "../../types";
 
 const Login = () => {
 
-  const { setLoggedInUser, findUser } = useContext(UsersContext) as UsersContextTypes;
+  const { setLoggedInUser, findUserByMail } = useContext(UsersContext) as UsersContextTypes;
   const navigate = useNavigate();
   const [error, setError] = useState('');
 
@@ -32,7 +32,7 @@ const Login = () => {
         .trim()
     }),
     onSubmit: (values) => {
-      const foundUser = findUser(values);
+      const foundUser = findUserByMail(values);
       if(foundUser){
         if(values.stayLoggedIn){
           localStorage.setItem('loggedInUser', JSON.stringify(foundUser));
