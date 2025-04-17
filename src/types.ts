@@ -5,7 +5,8 @@ export type ChildProp = {
 }
 
 export type UsersContextTypes = {
-
+  users: User[],
+  addUser: (newUser: User) => void
 }
 
 export type User = {
