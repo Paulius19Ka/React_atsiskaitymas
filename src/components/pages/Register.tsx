@@ -3,6 +3,7 @@ import * as Yup from 'yup';
 import { useContext, useState } from 'react';
 import { v4 as genID } from 'uuid';
 import { useNavigate } from 'react-router';
+import bcrypt from 'bcryptjs';
 
 import UsersContext from '../contexts/UsersContext';
 import { User, UsersContextTypes } from '../../types';
@@ -67,7 +68,9 @@ const Register = () => {
         } else {
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
           const { passwordRepeat, stayLoggedIn, ...newUser } = values;
-          
+
+          const hasehedPass = bcrypt.hashSync(newUser.password, 10);
+          newUser.password = hasehedPass;
           newUser.id = genID();
           newUser.role = 'user';
   
@@ -175,7 +178,7 @@ const Register = () => {
             checked={formik.values.stayLoggedIn}
             onChange={formik.handleChange}
           />
-          <label htmlFor="stayLoggedIn">Stay logged in</label>
+          <label htmlFor="stayLoggedIn">Stay Logged In</label>
         </div>
         <input type="submit" />
         {

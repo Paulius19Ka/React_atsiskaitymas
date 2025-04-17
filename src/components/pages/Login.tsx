@@ -6,6 +6,7 @@ import * as Yup from 'yup';
 
 import UsersContext from "../contexts/UsersContext";
 import { UsersContextTypes } from "../../types";
+import bcrypt from "bcryptjs";
 
 const Login = () => {
 
@@ -36,7 +37,7 @@ const Login = () => {
       if(users){
         const foundUser = users.find(user =>
           user.email === values.email &&
-          user.password === values.password
+          bcrypt.compareSync(values.password, user.password)
         )
         if(foundUser){
           if(values.stayLoggedIn){
@@ -92,6 +93,7 @@ const Login = () => {
             checked={formik.values.stayLoggedIn}
             onChange={formik.handleChange}
           />
+          <label htmlFor="stayLoggedIn">Stay Logged In</label>
         </div>
         <input type="submit" />
         {

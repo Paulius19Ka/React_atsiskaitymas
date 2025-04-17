@@ -4,7 +4,7 @@
       "id": "qweisalkdsanlm",
       "username": "admin",
       "email": "admin@admin.com",
-      "password": "Password1@",
+      "password": "$2b$10$4MGh1gRFz2mwtmbU7I8MHOVgXpLWlBtyXGKxF.J3.sFam5XTNzAOS",
       "avatar": "https://static.vecteezy.com/system/resources/thumbnails/019/194/935/small_2x/global-admin-icon-color-outline-vector.jpg",
       "dob": "1993-03-08",
       "role": "admin",
@@ -16,7 +16,7 @@
       "id": "1a266afa-3284-4481-8341-c9c26ea5f72c",
       "username": "Paulius",
       "email": "paulius@email.com",
-      "password": "Pass123@",
+      "password": "$2b$10$4dIQ8xyE5OmEXaSOmDMiKeo7wkqrR16e9P9j9Ltjp2P0L9gRi6aue",
       "avatar": "",
       "dob": "1993-03-08",
       "role": "user",
@@ -28,7 +28,7 @@
       "id": "0832feb0-1fb3-4bbb-bc41-c0c015c33036",
       "username": "NePaulius",
       "email": "nepaulius@email.com",
-      "password": "Pass321@",
+      "password": "$2b$10$ye73MMQ6GWGJWVvfTKdW0eVWKf3xlIxYpzx2.5L0yxhpS/mhJBLb.",
       "avatar": "https://img.freepik.com/free-photo/serious-young-african-man-standing-isolated_171337-9633.jpg",
       "dob": "1999-01-02",
       "role": "user",
@@ -36,6 +36,16 @@
         "787a1d23-fd3e-4280-9c3f-091bbc4b7129",
         "31864083-6314-4d0b-8a0d-56aa93846a0a"
       ]
+    },
+    {
+      "id": "78f2d5fe-ddae-40f7-b97d-434dfad3070c",
+      "username": "Tomas",
+      "email": "tomas@mail.com",
+      "password": "$2b$10$gNw8nP1/AwD3LWsYZ5eS7Oxvn9T0TcwhHKWtU/ZGl51I/0/JHT2f.",
+      "avatar": "https://media.gettyimages.com/id/1424338912/photo/business-man-crossing-street-crosswalk-or-road-in-urban-city-waiting-for-taxi-cab-or.jpg",
+      "dob": "1980-04-03",
+      "role": "user",
+      "savedPosts": []
     }
   ],
   "posts": [
