@@ -8,6 +8,15 @@
       "avatar": "https://static.vecteezy.com/system/resources/thumbnails/019/194/935/small_2x/global-admin-icon-color-outline-vector.jpg",
       "dob": "1993-03-08",
       "role": "admin"
+    },
+    {
+      "id": "1a266afa-3284-4481-8341-c9c26ea5f72c",
+      "username": "Paulius",
+      "email": "paulius@email.com",
+      "password": "Pass123@",
+      "avatar": "",
+      "dob": "1993-03-08",
+      "role": "user"
     }
   ],
   "posts": []

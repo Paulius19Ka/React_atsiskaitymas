@@ -60,6 +60,7 @@ const Register = () => {
       if(foundUser){
         setError('User already exists.');
       } else {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { passwordRepeat, stayLoggedIn, ...newUser } = values;
         
         newUser.id = genID();
@@ -71,6 +72,7 @@ const Register = () => {
 
         setLoggedInUser(newUser as User);
         addUser(newUser as User);
+        navigate('/');
       }
     }
   })
@@ -161,7 +163,7 @@ const Register = () => {
           <input
             type="checkbox" 
             name='stayLoggedIn' id='stayLoggedIn'
-            value={formik.values.stayLoggedIn}
+            checked={formik.values.stayLoggedIn}
             onChange={formik.handleChange}
           />
           <label htmlFor="stayLoggedIn">Stay logged in</label>
