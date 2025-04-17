@@ -13,19 +13,26 @@ const StyledDiv = styled.div`
   gap: 10px;
 
   width: 90%;
-  background-color: black;
-  padding: 10px 20px;
+  background-color: #171717;
+  padding: 20px 20px;
   border-radius: 15px;
 
   > div.userInfo{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
 
-    > img{
-      height: 50px;
-      width: 50px;
-      object-fit: cover;
+    > div{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      > img{
+        height: 30px;
+        width: 30px;
+        object-fit: cover;
+        border-radius: 30px;
+      }
     }
   }
 
@@ -36,9 +43,29 @@ const StyledDiv = styled.div`
     gap: 10px;
 
     > img{
-      width: 200px;
+      width: 100%;
       height: 200px;
       object-fit: cover;
+      border-radius: 15px;
+    }
+  }
+
+  > div.actions{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    > button{
+      border: none;
+      border-radius: 10px;
+      padding: 5px 10px;
+      font-size: 1rem;
+      background-color: #5d5d5d;
+
+      &:hover{
+        cursor: pointer;
+        background-color: #939393;
+      }
     }
   }
 `;
@@ -61,12 +88,14 @@ const PostCard = ({ data }: Props) => {
   return (
     <StyledDiv>
       <div className="userInfo">
-        {
-          creator?.avatar ?
-          <img src={creator.avatar} alt={creator.username} /> :
-          <img src='https://t3.ftcdn.net/jpg/08/05/28/22/360_F_805282248_LHUxw7t2pnQ7x8lFEsS2IZgK8IGFXePS.jpg' alt='placeholder profile picture' />
-        }
-        <span>{creator?.username}</span>
+        <div>
+          {
+            creator?.avatar ?
+            <img src={creator.avatar} alt={creator.username} /> :
+            <img src='https://t3.ftcdn.net/jpg/08/05/28/22/360_F_805282248_LHUxw7t2pnQ7x8lFEsS2IZgK8IGFXePS.jpg' alt='placeholder profile picture' />
+          }
+          <span>{creator?.username}</span>
+        </div>
         <span>{data.dateOfPost.substring(0, 10)}</span>
       </div>
       <div className="cardContent">
