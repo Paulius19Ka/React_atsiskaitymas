@@ -30,6 +30,12 @@ const UsersProvider = ({ children }: ChildProp) => {
         type: 'setData',
         data
       }));
+
+      const storedUser = localStorage.getItem('loggedInUser') ?
+      JSON.parse(localStorage.getItem('loggedInUser') as string) : null;
+      if(storedUser){
+        setLoggedInUser(storedUser);
+      }
   }, []);
 
   const addUser = (newUser: User) => {
@@ -44,7 +50,17 @@ const UsersProvider = ({ children }: ChildProp) => {
       type: 'addUser',
       newUser
     })
-  }
+  };
+
+  const findUser = (formikValues: Partial<User>): User | undefined => {
+    const foundUser = users.find(user => 
+      user.email === formikValues.email &&
+      user.password === formikValues.password
+    );
+    if(foundUser){
+      return foundUser;
+    }
+  };
 
   return (
     <UsersContext.Provider
@@ -52,7 +68,8 @@ const UsersProvider = ({ children }: ChildProp) => {
         users,
         addUser,
         loggedInUser,
-        setLoggedInUser
+        setLoggedInUser,
+        findUser
       }}
     >
       { children }

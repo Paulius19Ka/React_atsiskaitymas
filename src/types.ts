@@ -8,7 +8,8 @@ export type UsersContextTypes = {
   users: User[],
   addUser: (newUser: User) => void,
   loggedInUser: User | null,
-  setLoggedInUser: React.Dispatch<React.SetStateAction<User | null>>
+  setLoggedInUser: React.Dispatch<React.SetStateAction<User | null>>,
+  findUser: (formikValues: Partial<User>) => User | undefined
 }
 
 export type User = {
@@ -17,5 +18,6 @@ export type User = {
   email: string,
   password: string,
   avatar: string,
-  dob: string
+  dob: string,
+  role: 'admin' | 'user'
 }
