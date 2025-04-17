@@ -1,7 +1,8 @@
 import styled from "styled-components";
-import { Post, User, UsersContextTypes } from "../../../types";
+import { Post, PostsContextTypes, User, UsersContextTypes } from "../../../types";
 import { useContext, useEffect, useState } from "react";
 import UsersContext from "../../contexts/UsersContext";
+import PostsContext from "../../contexts/PostsContext";
 
 type Props = {
   data: Post
@@ -73,6 +74,7 @@ const StyledDiv = styled.div`
 const PostCard = ({ data }: Props) => {
 
   const { loggedInUser, findUserById } = useContext(UsersContext) as UsersContextTypes;
+  const { deletePost } = useContext(PostsContext) as PostsContextTypes;
   const [creator, setCreator] = useState<User | undefined>(undefined);
 
   const findCreator = () => {
@@ -111,7 +113,7 @@ const PostCard = ({ data }: Props) => {
         }
         {
           loggedInUser?.id === data.posterId ?
-          <button>Delete</button> :
+          <button onClick={() => deletePost(data.id)}>Delete</button> :
           <></>
         }
       </div>
