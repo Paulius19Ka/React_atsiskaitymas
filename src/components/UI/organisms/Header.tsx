@@ -68,14 +68,14 @@ const Header = () => {
           {
             !loggedInUser ?
             <>
-              <li><NavLink to='login'>login</NavLink></li>
-              <li><NavLink to='register'>register</NavLink></li>
+              <li><NavLink to='/login'>login</NavLink></li>
+              <li><NavLink to='/register'>register</NavLink></li>
             </> :
             <>
-              <li><NavLink to='add'>add</NavLink></li>
+              <li><NavLink to='/add'>add</NavLink></li>
               <li>
                 <div>
-                  <NavLink to='user/:id'>user</NavLink>
+                  <NavLink to={`/user`}>{loggedInUser.username}</NavLink>
                   <button onClick={() => handleLogout()}>Logout</button>
                 </div>
               </li>
