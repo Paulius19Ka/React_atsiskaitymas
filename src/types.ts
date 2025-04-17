@@ -9,7 +9,8 @@ export type UsersContextTypes = {
   addUser: (newUser: User) => void,
   loggedInUser: User | null,
   setLoggedInUser: React.Dispatch<React.SetStateAction<User | null>>,
-  findUser: (formikValues: Partial<User>) => User | undefined
+  findUserByMail: (formikValues: Partial<User>) => User | undefined,
+  findUserById: (id: User["id"]) => User | undefined
 }
 
 export type PostsContextTypes = {
@@ -34,5 +35,6 @@ export type Post = {
   posterId: User['id'],
   dateOfPost: string,
   picture: string,
+  title: string,
   content: string
 }

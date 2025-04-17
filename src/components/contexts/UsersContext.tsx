@@ -52,12 +52,16 @@ const UsersProvider = ({ children }: ChildProp) => {
     })
   };
 
-  const findUser = (formikValues: Partial<User>): User | undefined => {
+  const findUserByMail = (formikValues: Partial<User>): User | undefined => {
     return users.find(user => 
       user.email === formikValues.email &&
       user.password === formikValues.password
     );
   };
+
+  const findUserById = (id: User['id']): User | undefined => {
+    return users.find(user => user.id === id);
+  }
 
   return (
     <UsersContext.Provider
@@ -66,7 +70,8 @@ const UsersProvider = ({ children }: ChildProp) => {
         addUser,
         loggedInUser,
         setLoggedInUser,
-        findUser
+        findUserByMail,
+        findUserById
       }}
     >
       { children }
