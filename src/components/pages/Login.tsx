@@ -22,8 +22,8 @@ const Login = () => {
     validationSchema: Yup.object({
       email: Yup.string()
         .email('Enter a valid email.')
-        .min(5, 'Username must be longer than 5 symbols.')
-        .max(20, 'Username must be shorter than 20 symbols.')
+        .min(5, 'Email must be longer than 5 symbols.')
+        .max(40, 'Email must be shorter than 40 symbols.')
         .required('Enter an email.')
         .trim(),
       password: Yup.string()
