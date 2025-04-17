@@ -6,10 +6,11 @@ import * as Yup from 'yup';
 
 import UsersContext from "../contexts/UsersContext";
 import { UsersContextTypes } from "../../types";
+import bcrypt from "bcryptjs";
 
 const Login = () => {
 
-  const { setLoggedInUser, findUserByMail } = useContext(UsersContext) as UsersContextTypes;
+  const { setLoggedInUser, users } = useContext(UsersContext) as UsersContextTypes;
   const navigate = useNavigate();
   const [error, setError] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
@@ -33,19 +34,24 @@ const Login = () => {
         .trim()
     }),
     onSubmit: (values) => {
-      const foundUser = findUserByMail(values);
-      if(foundUser){
-        if(values.stayLoggedIn){
-          localStorage.setItem('loggedInUser', JSON.stringify(foundUser));
+      if(users){
+        const foundUser = users.find(user =>
+          user.email === values.email &&
+          bcrypt.compareSync(values.password, user.password)
+        )
+        if(foundUser){
+          if(values.stayLoggedIn){
+            localStorage.setItem('loggedInUser', JSON.stringify(foundUser));
+          }
+          setLoggedInUser(foundUser);
+          setSuccessMsg('Login successful.');
+  
+          setTimeout(() => {
+            navigate('/');
+          }, 1000);
+        } else {
+          setError('Wrong email or password.')
         }
-        setLoggedInUser(foundUser);
-        setSuccessMsg('Registration complete.');
-
-        setTimeout(() => {
-          navigate('/');
-        }, 1000);
-      } else {
-        setError('Wrong email or password.')
       }
     }
   })
@@ -87,6 +93,7 @@ const Login = () => {
             checked={formik.values.stayLoggedIn}
             onChange={formik.handleChange}
           />
+          <label htmlFor="stayLoggedIn">Stay Logged In</label>
         </div>
         <input type="submit" />
         {

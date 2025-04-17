@@ -58,11 +58,11 @@ const PostsProvider = ({ children }: ChildProp) => {
 
   useEffect(() => {
     fetch(`http://localhost:8080/posts`)
-      .then(res => res.json())
-      .then((data: Post[]) => dispatch({
-        type: "setData",
-        data
-    }));
+    .then(res => res.json())
+    .then((data: Post[]) => dispatch({
+      type: "setData",
+      data
+  }));
   }, []);
 
   return (

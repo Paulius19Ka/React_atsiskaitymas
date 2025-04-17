@@ -3,13 +3,14 @@ import * as Yup from 'yup';
 import { useContext, useState } from 'react';
 import { v4 as genID } from 'uuid';
 import { useNavigate } from 'react-router';
+import bcrypt from 'bcryptjs';
 
 import UsersContext from '../contexts/UsersContext';
 import { User, UsersContextTypes } from '../../types';
 
 const Register = () => {
 
-  const { setLoggedInUser, addUser, findUserByMail } = useContext(UsersContext) as UsersContextTypes;
+  const { setLoggedInUser, addUser, users } = useContext(UsersContext) as UsersContextTypes;
   const navigate = useNavigate();
   const [error, setError] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
@@ -57,28 +58,33 @@ const Register = () => {
         .required('Enter your birth date.')
     }),
     onSubmit: (values) => {
-      // console.log(values);
-      const foundUser = findUserByMail(values) as User;
-      if(foundUser){
-        setError('User already exists.');
-      } else {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const { passwordRepeat, stayLoggedIn, ...newUser } = values;
-        
-        newUser.id = genID();
-        newUser.role = 'user';
+      if(users){
+        const foundUser = users.find(user =>
+          user.email === values.email ||
+          user.username === values.username
+        )
+        if(foundUser){
+          setError('User already exists.');
+        } else {
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          const { passwordRepeat, stayLoggedIn, ...newUser } = values;
 
-        if(values.stayLoggedIn){
-          localStorage.setItem('loggedInUser', JSON.stringify(newUser));
+          const hasehedPass = bcrypt.hashSync(newUser.password, 10);
+          newUser.password = hasehedPass;
+          newUser.id = genID();
+          newUser.role = 'user';
+  
+          if(values.stayLoggedIn){
+            localStorage.setItem('loggedInUser', JSON.stringify(newUser));
+          }
+  
+          setLoggedInUser(newUser as User);
+          addUser(newUser as User);
+          setSuccessMsg('Registration complete.');
+          setTimeout(() => {
+            navigate('/');
+          }, 1000);
         }
-
-        setLoggedInUser(newUser as User);
-        addUser(newUser as User);
-        setSuccessMsg('Registration complete.');
-
-        setTimeout(() => {
-          navigate('/');
-        }, 1000);
       }
     }
   })
@@ -172,7 +178,7 @@ const Register = () => {
             checked={formik.values.stayLoggedIn}
             onChange={formik.handleChange}
           />
-          <label htmlFor="stayLoggedIn">Stay logged in</label>
+          <label htmlFor="stayLoggedIn">Stay Logged In</label>
         </div>
         <input type="submit" />
         {
