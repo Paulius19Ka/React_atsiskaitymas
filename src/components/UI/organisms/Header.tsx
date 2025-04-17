@@ -1,5 +1,8 @@
+import { useContext } from "react";
 import { NavLink } from "react-router";
 import styled from "styled-components";
+import UsersContext from "../../contexts/UsersContext";
+import { UsersContextTypes } from "../../../types";
 
 const StyledHeader = styled.header`
   height: 100px;
@@ -33,16 +36,26 @@ const StyledHeader = styled.header`
 `;
 
 const Header = () => {
+
+  const { loggedInUser } = useContext(UsersContext) as UsersContextTypes;
+
   return (
     <StyledHeader>
       <span>IMAGE</span>
       <nav>
         <ul>
           <li><NavLink to=''>home</NavLink></li>
-          <li><NavLink to='login'>login</NavLink></li>
-          <li><NavLink to='register'>register</NavLink></li>
-          <li><NavLink to='add'>add</NavLink></li>
-          <li><NavLink to='user/:id'>user</NavLink></li>
+          {
+            !loggedInUser ?
+            <>
+              <li><NavLink to='login'>login</NavLink></li>
+              <li><NavLink to='register'>register</NavLink></li>
+            </> :
+            <>
+              <li><NavLink to='add'>add</NavLink></li>
+              <li><NavLink to='user/:id'>user</NavLink></li>
+            </>
+          }
         </ul>
       </nav>
     </StyledHeader>
