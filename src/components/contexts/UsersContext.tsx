@@ -97,7 +97,7 @@ const UsersProvider = ({ children }: ChildProp) => {
 
       localStorage.setItem('loggedInUser', JSON.stringify({
         ...loggedInUser,
-        savePosts: newSavedPosts
+        savedPosts: newSavedPosts
       }));
 
       dispatch({

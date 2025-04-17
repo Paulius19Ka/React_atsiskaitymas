@@ -6,21 +6,29 @@ import Login from './components/pages/Login';
 import Register from './components/pages/Register';
 import AddPost from './components/pages/AddPost';
 import UserPage from './components/pages/UserPage';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import UsersContext from './components/contexts/UsersContext';
-import { UsersContextTypes } from './types';
+import { User, UsersContextTypes } from './types';
 
 const App = () => {
 
-  const { loggedInUser } = useContext(UsersContext) as UsersContextTypes;
+  const { loggedInUser, setLoggedInUser } = useContext(UsersContext) as UsersContextTypes;
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("loggedInUser");
+    if(storedUser){
+      setLoggedInUser(JSON.parse(storedUser) as User);
+    };
+  }, []);
+
 
   return (
     <>
       <Routes>
         <Route path='' element={<MainOutlet />}>
           <Route index element={<Home />} />
-          <Route path='login' element={<Login />} />
-          <Route path='register' element={<Register />} />
+          <Route path='login' element={!loggedInUser ? <Login /> : <Navigate to='/user' replace />} />
+          <Route path='register' element={!loggedInUser ? <Register /> : <Navigate to='/user' replace />} />
           <Route path='add' element={loggedInUser ? <AddPost /> : <Navigate to='/login' replace />} />
           <Route path='user' element={loggedInUser ? <UserPage /> : <Navigate to='/login' replace />} />
         </Route>

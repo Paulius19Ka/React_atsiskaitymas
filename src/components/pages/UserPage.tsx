@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import UsersContext from "../contexts/UsersContext";
 import { PostsContextTypes, UsersContextTypes } from "../../types";
 import PostsContext from "../contexts/PostsContext";
@@ -8,6 +8,13 @@ const UserPage = () => {
 
   const { loggedInUser } = useContext(UsersContext) as UsersContextTypes;
   const { posts } = useContext(PostsContext) as PostsContextTypes;
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if(posts !== undefined && posts !== null){
+      setLoading(false);
+    };
+  }, [posts]);
 
   return (
     <section>
@@ -15,16 +22,18 @@ const UserPage = () => {
       <span>{loggedInUser?.username}</span>
       <div>
         {
-          !loggedInUser || !posts ?
+          !loggedInUser || loading ?
           <p>Loading</p> :
-          loggedInUser.savedPosts?.length ?
+          posts.length === 0 ?
+          <p>No posts to display</p> :
+          loggedInUser.savedPosts.length === 0 ?
+          <p>No saved posts</p> :
           posts.filter(post => loggedInUser.savedPosts.includes(post.id)).map(post =>
             <PostCard
               data={post}
               key={post.id}
             />
-          ) :
-          <p>No saved posts</p>
+          )
         }
       </div>
     </section>

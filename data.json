@@ -9,7 +9,7 @@
       "dob": "1993-03-08",
       "role": "admin",
       "savedPosts": [
-        "12312312"
+        "9f8fbd18-65a4-40e4-a64d-58a022650e7b"
       ]
     },
     {
@@ -20,7 +20,9 @@
       "avatar": "",
       "dob": "1993-03-08",
       "role": "user",
-      "savedPosts": []
+      "savedPosts": [
+        "9f8fbd18-65a4-40e4-a64d-58a022650e7b"
+      ]
     },
     {
       "id": "0832feb0-1fb3-4bbb-bc41-c0c015c33036",
@@ -34,125 +36,16 @@
         "787a1d23-fd3e-4280-9c3f-091bbc4b7129",
         "31864083-6314-4d0b-8a0d-56aa93846a0a"
       ]
-    },
-    {
-      "id": "02076288-492e-4aaf-b624-a97a2c574284",
-      "username": "existing",
-      "email": "existing@email.com",
-      "password": "Pass123@",
-      "avatar": "https://thumbs.dreamstime.com/b/man-feeling-suspicious-face-expression-emotion-hesitating-facial-studio-shot-white-isolated-background-copy-space-90927117.jpg",
-      "dob": "1999-11-11",
-      "role": "user",
-      "savedPosts": []
-    },
-    {
-      "id": "88f2dd95-7f6f-46fc-9713-bd356fab0f08",
-      "username": "newUser",
-      "email": "newUser@email.c2om",
-      "password": "paSS123@",
-      "avatar": "https://upload.wikimedia.org/wikipedia/commons/a/ae/Random_Radio_Bruno_Festival_di_Sanremo_2021.png",
-      "dob": "1998-09-09",
-      "role": "user",
-      "savedPosts": [
-        "31864083-6314-4d0b-8a0d-56aa93846a0a",
-        "12312312",
-        "57027f30-f339-4be5-81c7-dda483f4ee5b"
-      ]
-    },
-    {
-      "id": "a07f3ca0-b89f-4fa5-b2ee-c05511e03901",
-      "username": "tomas",
-      "email": "tomas@mail.com",
-      "password": "Slaptas1@",
-      "avatar": "https://media.gettyimages.com/id/1424338912/photo/business-man-crossing-street-crosswalk-or-road-in-urban-city-waiting-for-taxi-cab-or.jpg",
-      "dob": "1989-12-12",
-      "role": "user",
-      "savedPosts": [
-        "57027f30-f339-4be5-81c7-dda483f4ee5b",
-        "787a1d23-fd3e-4280-9c3f-091bbc4b7129"
-      ]
-    },
-    {
-      "id": "3565b50c-aafe-4949-992c-d5aee6884f18",
-      "username": "mantas",
-      "email": "mantas@useless.com",
-      "password": "Pass123@",
-      "avatar": "https://i.pinimg.com/736x/bc/54/7e/bc547e441e38799306b860723776cb58.jpg",
-      "dob": "1989-05-05",
-      "role": "user",
-      "savedPosts": [
-        "57027f30-f339-4be5-81c7-dda483f4ee5b",
-        "9284c109-0634-45e7-9eba-5507121805de",
-        "6b23167e-4f46-4c2e-b2b6-42a51ee1370d"
-      ]
-    },
-    {
-      "id": "00fa0f4a-1afc-4b41-9296-709ff4397b93",
-      "username": "jonas",
-      "email": "jonas@mail.com",
-      "password": "Pass123@",
-      "avatar": "",
-      "dob": "2004-04-08",
-      "role": "user",
-      "savedPosts": []
     }
   ],
   "posts": [
     {
-      "id": "12312312",
-      "posterId": "1a266afa-3284-4481-8341-c9c26ea5f72c",
-      "dateOfPost": "Thu Apr 17 2025 13:42:59 GMT+0300 (Eastern European Summer Time)",
-      "picture": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png",
-      "title": "What is an image?",
-      "content": "An image is a visual representation. An image can be two-dimensional, such as a drawing, painting, or photograph, or three-dimensional, such as a carving or sculpture. Images may be displayed through other media, including a projection on a surface, activation of electronic signals, or digital displays; they can also be reproduced through mechanical means, such as photography, printmaking, or photocopying. Images can also be animated through digital or physical processes."
-    },
-    {
-      "id": "6430c7b3-c607-4e27-8525-8dfb378a2151",
+      "id": "9f8fbd18-65a4-40e4-a64d-58a022650e7b",
+      "posterId": "qweisalkdsanlm",
+      "dateOfPost": "Thu Apr 17 2025 19:24:00 GMT+0300 (Eastern European Summer Time)",
       "title": "Testing",
-      "picture": "https://www.zooplus.co.uk/magazine/wp-content/uploads/2018/05/Cockatiels.jpg",
-      "content": "Random text here, to test whether this form works. lalalalalalaa",
-      "posterId": "1a266afa-3284-4481-8341-c9c26ea5f72c",
-      "dateOfPost": "Thu Apr 17 2025 15:34:29 GMT+0300 (Eastern European Summer Time)"
-    },
-    {
-      "id": "787a1d23-fd3e-4280-9c3f-091bbc4b7129",
-      "posterId": "1a266afa-3284-4481-8341-c9c26ea5f72c",
-      "dateOfPost": "Thu Apr 17 2025 15:35:28 GMT+0300 (Eastern European Summer Time)",
-      "title": "Random dogs",
-      "picture": "https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg",
-      "content": "Random dogs to test whether this works or not."
-    },
-    {
-      "id": "31864083-6314-4d0b-8a0d-56aa93846a0a",
-      "posterId": "0832feb0-1fb3-4bbb-bc41-c0c015c33036",
-      "dateOfPost": "Thu Apr 17 2025 15:41:40 GMT+0300 (Eastern European Summer Time)",
-      "title": "Other users post",
-      "picture": "https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg",
-      "content": "Random image of a random elephant."
-    },
-    {
-      "id": "57027f30-f339-4be5-81c7-dda483f4ee5b",
-      "posterId": "88f2dd95-7f6f-46fc-9713-bd356fab0f08",
-      "dateOfPost": "Thu Apr 17 2025 17:53:34 GMT+0300 (Eastern European Summer Time)",
-      "title": "Postpostpost",
-      "picture": "https://static.scientificamerican.com/sciam/cache/file/6284F581-96A1-4D49-9F1B9F22EA328189_source.jpg",
-      "content": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-    },
-    {
-      "id": "9284c109-0634-45e7-9eba-5507121805de",
-      "posterId": "a07f3ca0-b89f-4fa5-b2ee-c05511e03901",
-      "dateOfPost": "Thu Apr 17 2025 17:59:27 GMT+0300 (Eastern European Summer Time)",
-      "title": "hello there",
-      "picture": "https://cdn.pixabay.com/photo/2020/02/25/17/54/illustration-4879559_1280.png",
-      "content": "40,000+ Free Random Person & Random Images - Pixabay"
-    },
-    {
-      "id": "6b23167e-4f46-4c2e-b2b6-42a51ee1370d",
-      "posterId": "3565b50c-aafe-4949-992c-d5aee6884f18",
-      "dateOfPost": "Thu Apr 17 2025 18:04:06 GMT+0300 (Eastern European Summer Time)",
-      "title": "hi there",
       "picture": "https://london.bridestory.com/images/c_fill,dpr_1.0,f_auto,fl_progressive,pg_1,q_80,w_680/v1/assets/aga-tomaszek-cardiff-wedding-photographer_5559_mkzhie/aga-tomaszek-photography_random-portfolio-images_1.jpg",
-      "content": "sveiki as mantas ir as nedalyvauju paskaitose"
+      "content": "test test test test test test test test test test test test test test test "
     }
   ]
 }
