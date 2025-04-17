@@ -44,6 +44,15 @@ const UsersProvider = ({ children }: ChildProp) => {
       type: 'addUser',
       newUser
     })
+  };
+
+  const findUser = (id: User['id']): User | string => {
+    const foundUser = users.find(user => user.id === id);
+    if(foundUser){
+      return foundUser;
+    } else {
+      return 'The user was not found.'
+    }
   }
 
   return (
@@ -52,7 +61,8 @@ const UsersProvider = ({ children }: ChildProp) => {
         users,
         addUser,
         loggedInUser,
-        setLoggedInUser
+        setLoggedInUser,
+        findUser
       }}
     >
       { children }

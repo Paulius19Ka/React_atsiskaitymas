@@ -8,7 +8,8 @@ export type UsersContextTypes = {
   users: User[],
   addUser: (newUser: User) => void,
   loggedInUser: User | null,
-  setLoggedInUser: React.Dispatch<React.SetStateAction<User | null>>
+  setLoggedInUser: React.Dispatch<React.SetStateAction<User | null>>,
+  findUser: (id: User["id"]) => User | string
 }
 
 export type User = {
