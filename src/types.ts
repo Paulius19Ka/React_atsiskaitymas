@@ -19,5 +19,6 @@ export type User = {
   password: string,
   avatar: string,
   dob: string,
-  role: 'admin' | 'user'
+  role: 'admin' | 'user',
+  savedPosts: string[]
 }

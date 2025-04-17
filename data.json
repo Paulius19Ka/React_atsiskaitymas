@@ -7,7 +7,8 @@
       "password": "Password1@",
       "avatar": "https://static.vecteezy.com/system/resources/thumbnails/019/194/935/small_2x/global-admin-icon-color-outline-vector.jpg",
       "dob": "1993-03-08",
-      "role": "admin"
+      "role": "admin",
+      "savedPosts": ["12312312"]
     },
     {
       "id": "1a266afa-3284-4481-8341-c9c26ea5f72c",
@@ -16,8 +17,17 @@
       "password": "Pass123@",
       "avatar": "",
       "dob": "1993-03-08",
-      "role": "user"
+      "role": "user",
+      "savedPosts": []
     }
   ],
-  "posts": []
+  "posts": [
+    {
+      "id": "12312312",
+      "posterId": "1a266afa-3284-4481-8341-c9c26ea5f72c",
+      "dateOfPost": "Thu Apr 17 2025 13:42:59 GMT+0300 (Eastern European Summer Time)",
+      "picture": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png",
+      "content": "An image is a visual representation. An image can be two-dimensional, such as a drawing, painting, or photograph, or three-dimensional, such as a carving or sculpture. Images may be displayed through other media, including a projection on a surface, activation of electronic signals, or digital displays; they can also be reproduced through mechanical means, such as photography, printmaking, or photocopying. Images can also be animated through digital or physical processes."
+    }
+  ]
 }

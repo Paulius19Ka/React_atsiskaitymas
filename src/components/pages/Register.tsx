@@ -23,6 +23,7 @@ const Register = () => {
       avatar: '',
       dob: '',
       role: 'user' as const,
+      savedPosts: [],
       stayLoggedIn: false
     },
     validationSchema: Yup.object({
