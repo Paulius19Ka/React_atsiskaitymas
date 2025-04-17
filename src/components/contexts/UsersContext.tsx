@@ -1,6 +1,5 @@
 import { createContext, useEffect, useReducer, useState } from "react";
 import { ChildProp, User, UsersContextTypes } from "../../types";
-import { useNavigate } from "react-router";
 
 type ActionTypes = 
 { type: 'setData', data: User[] } |
@@ -23,7 +22,6 @@ const UsersProvider = ({ children }: ChildProp) => {
 
   const [users, dispatch] = useReducer(reducer, []);
   const [loggedInUser, setLoggedInUser] = useState<User | null>(null);
-  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(`http://localhost:8080/users`)
@@ -32,6 +30,12 @@ const UsersProvider = ({ children }: ChildProp) => {
         type: 'setData',
         data
       }));
+
+      const storedUser = localStorage.getItem('loggedInUser') ?
+      JSON.parse(localStorage.getItem('loggedInUser') as string) : null;
+      if(storedUser){
+        setLoggedInUser(storedUser);
+      }
   }, []);
 
   const addUser = (newUser: User) => {
@@ -48,16 +52,13 @@ const UsersProvider = ({ children }: ChildProp) => {
     })
   };
 
-  const findUser = (formikValues: Partial<User>): void | string => {
+  const findUser = (formikValues: Partial<User>): User | undefined => {
     const foundUser = users.find(user => 
       user.email === formikValues.email &&
       user.password === formikValues.password
     );
     if(foundUser){
-      setLoggedInUser(foundUser);
-      navigate('/');
-    } else {
-      return 'The user was not found.';
+      return foundUser;
     }
   };
 

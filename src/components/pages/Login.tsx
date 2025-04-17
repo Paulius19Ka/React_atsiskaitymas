@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useFormik } from 'formik';
 import { Link, useNavigate } from "react-router";
 // import bcrypt from 'bcryptjs';
@@ -8,17 +8,27 @@ import { UsersContextTypes } from "../../types";
 
 const Login = () => {
 
-  const { users, setLoggedInUser } = useContext(UsersContext) as UsersContextTypes;
+  const { setLoggedInUser, findUser } = useContext(UsersContext) as UsersContextTypes;
   const navigate = useNavigate();
+  const [error, setError] = useState('');
 
   const formik = useFormik({
     initialValues: {
       email: '',
-      password: ''
+      password: '',
+      stayLoggedIn: false
     },
     onSubmit: (values) => {
-      console.log(values);
-      navigate('/');
+      const foundUser = findUser(values);
+      if(foundUser){
+        if(values.stayLoggedIn){
+          localStorage.setItem('loggedInUser', JSON.stringify(foundUser));
+        }
+        setLoggedInUser(foundUser);
+        navigate('/');
+      } else {
+        setError('Wrong email or password.')
+      }
     }
   })
 
@@ -46,7 +56,18 @@ const Login = () => {
             placeholder="enter your password..."
           />
         </div>
+        <div>
+          <input
+            type="checkbox"
+            name="stayLoggedIn" id="stayLoggedIn"
+            checked={formik.values.stayLoggedIn}
+            onChange={formik.handleChange}
+          />
+        </div>
         <input type="submit" />
+        {
+          error && <p style={{ color: "red" }}>{error}</p>
+        }
         <p>Don't have an account yet? Click <Link to='/register'>here</Link> to register.</p>
       </form>
     </section>
