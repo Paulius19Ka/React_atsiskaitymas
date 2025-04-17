@@ -1,23 +1,23 @@
-import { NavLink, Outlet } from "react-router";
+import { Outlet } from "react-router";
+import styled from "styled-components";
+
+import Header from "../UI/organisms/Header";
+import Footer from "../UI/organisms/Footer";
+
+const StyledMain = styled.main`
+  min-height: calc(100vh - 100px - 100px - 40px);
+
+  margin: 20px 20px;
+`;
 
 const MainOutlet = () => {
   return (
     <>
-      <header>
-        <nav>
-          <ul>
-            <li><NavLink to=''>home</NavLink></li>
-            <li><NavLink to='login'>login</NavLink></li>
-            <li><NavLink to='register'>register</NavLink></li>
-            <li><NavLink to='add'>add</NavLink></li>
-            <li><NavLink to='user/:id'>user</NavLink></li>
-          </ul>
-        </nav>
-      </header>
-      <main>
+      <Header />
+      <StyledMain>
         <Outlet />
-      </main>
-      <footer></footer>
+      </StyledMain>
+      <Footer />
     </>
   );
 }
