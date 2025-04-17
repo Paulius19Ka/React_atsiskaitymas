@@ -8,7 +8,9 @@
       "avatar": "https://static.vecteezy.com/system/resources/thumbnails/019/194/935/small_2x/global-admin-icon-color-outline-vector.jpg",
       "dob": "1993-03-08",
       "role": "admin",
-      "savedPosts": ["12312312"]
+      "savedPosts": [
+        "12312312"
+      ]
     },
     {
       "id": "1a266afa-3284-4481-8341-c9c26ea5f72c",
@@ -29,6 +31,22 @@
       "picture": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png",
       "title": "What is an image?",
       "content": "An image is a visual representation. An image can be two-dimensional, such as a drawing, painting, or photograph, or three-dimensional, such as a carving or sculpture. Images may be displayed through other media, including a projection on a surface, activation of electronic signals, or digital displays; they can also be reproduced through mechanical means, such as photography, printmaking, or photocopying. Images can also be animated through digital or physical processes."
+    },
+    {
+      "id": "6430c7b3-c607-4e27-8525-8dfb378a2151",
+      "title": "Testing",
+      "picture": "https://www.zooplus.co.uk/magazine/wp-content/uploads/2018/05/Cockatiels.jpg",
+      "content": "Random text here, to test whether this form works. lalalalalalaa",
+      "posterId": "1a266afa-3284-4481-8341-c9c26ea5f72c",
+      "dateOfPost": "Thu Apr 17 2025 15:34:29 GMT+0300 (Eastern European Summer Time)"
+    },
+    {
+      "id": "787a1d23-fd3e-4280-9c3f-091bbc4b7129",
+      "posterId": "1a266afa-3284-4481-8341-c9c26ea5f72c",
+      "dateOfPost": "Thu Apr 17 2025 15:35:28 GMT+0300 (Eastern European Summer Time)",
+      "title": "Random dogs",
+      "picture": "https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg",
+      "content": "Random dogs to test whether this works or not."
     }
   ]
 }
