@@ -115,6 +115,31 @@ const UsersProvider = ({ children }: ChildProp) => {
     }
   };
 
+  const unsavePost = (id: Post['id']) => {
+    if(loggedInUser){
+      setLoggedInUser({
+        ...loggedInUser,
+        savedPosts: loggedInUser.savedPosts.filter(postId => postId !== id)
+      });
+      localStorage.setItem('loggedInUser', JSON.stringify({
+        ...loggedInUser,
+        savedPosts: loggedInUser.savedPosts.filter(postId => postId !== id)
+      }));
+      dispatch({
+        type: 'unsavePost',
+        postId: id,
+        userId: loggedInUser.id
+      });
+      fetch(`http://localhost:8080/users/${loggedInUser.id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type":"application/json"
+        },
+        body: JSON.stringify({ savedPosts: loggedInUser.savedPosts.filter(postId => postId !== id) })
+      });
+    }
+  };
+
   return (
     <UsersContext.Provider
       value={{
@@ -124,7 +149,8 @@ const UsersProvider = ({ children }: ChildProp) => {
         setLoggedInUser,
         findUserByMail,
         findUserById,
-        savePost
+        savePost,
+        unsavePost
       }}
     >
       { children }

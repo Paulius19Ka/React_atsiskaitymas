@@ -10,7 +10,9 @@ export type UsersContextTypes = {
   loggedInUser: User | null,
   setLoggedInUser: React.Dispatch<React.SetStateAction<User | null>>,
   findUserByMail: (formikValues: Partial<User>) => User | undefined,
-  findUserById: (id: User["id"]) => User | undefined
+  findUserById: (id: User["id"]) => User | undefined,
+  savePost: (id: Post["id"]) => void,
+  unsavePost: (id: Post["id"]) => void
 }
 
 export type PostsContextTypes = {
