@@ -1,6 +1,7 @@
 import { useContext } from "react";
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import styled from "styled-components";
+
 import UsersContext from "../../contexts/UsersContext";
 import { UsersContextTypes } from "../../../types";
 
@@ -30,6 +31,18 @@ const StyledHeader = styled.header`
             color: red;
           }
         }
+
+        > div{
+          
+          > a{
+            color: yellow;
+            text-decoration: none;
+
+            &.active{
+              color: red;
+            }
+          }
+        }
       }
     }
   }
@@ -37,7 +50,14 @@ const StyledHeader = styled.header`
 
 const Header = () => {
 
-  const { loggedInUser } = useContext(UsersContext) as UsersContextTypes;
+  const { loggedInUser, setLoggedInUser } = useContext(UsersContext) as UsersContextTypes;
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    setLoggedInUser(null);
+    localStorage.removeItem('loggedInUser');
+    navigate('/');
+  }
 
   return (
     <StyledHeader>
@@ -53,7 +73,12 @@ const Header = () => {
             </> :
             <>
               <li><NavLink to='add'>add</NavLink></li>
-              <li><NavLink to='user/:id'>user</NavLink></li>
+              <li>
+                <div>
+                  <NavLink to='user/:id'>user</NavLink>
+                  <button onClick={() => handleLogout()}>Logout</button>
+                </div>
+              </li>
             </>
           }
         </ul>
