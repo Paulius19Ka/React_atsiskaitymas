@@ -12,6 +12,7 @@ const Login = () => {
   const { setLoggedInUser, findUserByMail } = useContext(UsersContext) as UsersContextTypes;
   const navigate = useNavigate();
   const [error, setError] = useState('');
+  const [successMsg, setSuccessMsg] = useState('');
 
   const formik = useFormik({
     initialValues: {
@@ -38,7 +39,11 @@ const Login = () => {
           localStorage.setItem('loggedInUser', JSON.stringify(foundUser));
         }
         setLoggedInUser(foundUser);
-        navigate('/');
+        setSuccessMsg('Registration complete.');
+
+        setTimeout(() => {
+          navigate('/');
+        }, 1000);
       } else {
         setError('Wrong email or password.')
       }
@@ -86,6 +91,9 @@ const Login = () => {
         <input type="submit" />
         {
           error && <p style={{ color: "red" }}>{error}</p>
+        }
+        {
+          successMsg && <p style={{ color: "green" }}>{successMsg}</p>
         }
         <p>Don't have an account yet? Click <Link to='/register'>here</Link> to register.</p>
       </form>

@@ -12,6 +12,7 @@ const Register = () => {
   const { setLoggedInUser, addUser, findUserByMail } = useContext(UsersContext) as UsersContextTypes;
   const navigate = useNavigate();
   const [error, setError] = useState('');
+  const [successMsg, setSuccessMsg] = useState('');
 
   const formik = useFormik({
     initialValues: {
@@ -73,7 +74,11 @@ const Register = () => {
 
         setLoggedInUser(newUser as User);
         addUser(newUser as User);
-        navigate('/');
+        setSuccessMsg('Registration complete.');
+
+        setTimeout(() => {
+          navigate('/');
+        }, 1000);
       }
     }
   })
@@ -172,6 +177,9 @@ const Register = () => {
         <input type="submit" />
         {
           error && <p style={{ color: "red" }}>{error}</p>
+        }
+        {
+          successMsg && <p style={{ color: "green" }}>{successMsg}</p>
         }
       </form>
     </section>
