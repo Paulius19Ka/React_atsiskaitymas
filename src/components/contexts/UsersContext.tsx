@@ -90,55 +90,38 @@ const UsersProvider = ({ children }: ChildProp) => {
     return users.find(user => user.id === id);
   }
 
-  const savePost = (id: Post['id']) => {
+  const savePostToggle = (id: Post['id']) => {
     if(loggedInUser){
-      setLoggedInUser({
-        ...loggedInUser,
-        savedPosts: [...loggedInUser.savedPosts, id]
-      });
-      localStorage.setItem('loggedInUser', JSON.stringify({
-        ...loggedInUser,
-        savedPosts: [...loggedInUser.savedPosts, id]
-      }));
-      dispatch({
-        type: 'savePost',
-        postId: id,
-        userId: loggedInUser.id
-      });
-      fetch(`http://localhost:8080/users/${loggedInUser.id}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type":"application/json"
-        },
-        body: JSON.stringify({ savedPosts: [...loggedInUser.savedPosts, id] })
-      });
-    }
-  };
+      const postSaved = loggedInUser.savedPosts.includes(id);
+      const newSavedPosts = postSaved ?
+      loggedInUser.savedPosts.filter(postId => postId !== id) :
+      [...loggedInUser.savedPosts, id];
 
-  const unsavePost = (id: Post['id']) => {
-    if(loggedInUser){
       setLoggedInUser({
         ...loggedInUser,
-        savedPosts: loggedInUser.savedPosts.filter(postId => postId !== id)
+        savedPosts: newSavedPosts
       });
+
       localStorage.setItem('loggedInUser', JSON.stringify({
         ...loggedInUser,
-        savedPosts: loggedInUser.savedPosts.filter(postId => postId !== id)
+        savePosts: newSavedPosts
       }));
+
       dispatch({
-        type: 'unsavePost',
+        type: postSaved ? 'unsavePost' : 'savePost',
         postId: id,
         userId: loggedInUser.id
       });
+
       fetch(`http://localhost:8080/users/${loggedInUser.id}`, {
         method: "PATCH",
         headers: {
           "Content-Type":"application/json"
         },
-        body: JSON.stringify({ savedPosts: loggedInUser.savedPosts.filter(postId => postId !== id) })
+        body: JSON.stringify({ savedPosts: newSavedPosts })
       });
     }
-  };
+  }
 
   return (
     <UsersContext.Provider
@@ -149,8 +132,7 @@ const UsersProvider = ({ children }: ChildProp) => {
         setLoggedInUser,
         findUserByMail,
         findUserById,
-        savePost,
-        unsavePost
+        savePostToggle
       }}
     >
       { children }

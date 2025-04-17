@@ -73,7 +73,7 @@ const StyledDiv = styled.div`
 
 const PostCard = ({ data }: Props) => {
 
-  const { loggedInUser, findUserById, savePost, unsavePost } = useContext(UsersContext) as UsersContextTypes;
+  const { loggedInUser, findUserById, savePostToggle } = useContext(UsersContext) as UsersContextTypes;
   const { deletePost } = useContext(PostsContext) as PostsContextTypes;
   const [creator, setCreator] = useState<User | null>(null);
 
@@ -104,8 +104,8 @@ const PostCard = ({ data }: Props) => {
       <div className="actions">
         {
           loggedInUser?.savedPosts.includes(data.id) ?
-          <button onClick={() => unsavePost(data.id)}>Unsave</button> :
-          <button onClick={() => savePost(data.id)}>Save</button>
+          <button onClick={() => savePostToggle(data.id)}>Unsave</button> :
+          <button onClick={() => savePostToggle(data.id)}>Save</button>
         }
         {
           loggedInUser?.id === data.posterId &&
