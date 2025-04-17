@@ -10,13 +10,15 @@ export type UsersContextTypes = {
   loggedInUser: User | null,
   setLoggedInUser: React.Dispatch<React.SetStateAction<User | null>>,
   findUserByMail: (formikValues: Partial<User>) => User | undefined,
-  findUserById: (id: User["id"]) => User | undefined
+  findUserById: (id: User["id"]) => User | undefined,
+  savePostToggle: (id: Post["id"]) => void
 }
 
 export type PostsContextTypes = {
   posts: Post[],
   addPost: (newPost: Post) => void,
-  deletePost: (id: Post["id"]) => void
+  deletePost: (id: Post["id"]) => void,
+  findPostById: (id: Post["id"]) => Post | undefined
 }
 
 export type User = {

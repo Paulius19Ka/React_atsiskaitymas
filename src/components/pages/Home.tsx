@@ -11,16 +11,18 @@ const Home = () => {
   return (
     <section>
       <h2>Home</h2>
-      {
-        posts ?
-        posts.map(post =>
-          <PostCard
-            data={post}
-            key={post.id}
-          />
-        ) :
-        <p>Loading gif</p>
-      }
+      <div>
+        {
+          posts ?
+          posts.map(post =>
+            <PostCard
+              data={post}
+              key={post.id}
+            />
+          ) :
+          <p>Loading gif</p>
+        }
+      </div>
     </section>
   );
 }

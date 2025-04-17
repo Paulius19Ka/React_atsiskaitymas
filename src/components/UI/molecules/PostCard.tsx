@@ -73,19 +73,15 @@ const StyledDiv = styled.div`
 
 const PostCard = ({ data }: Props) => {
 
-  const { loggedInUser, findUserById } = useContext(UsersContext) as UsersContextTypes;
+  const { loggedInUser, findUserById, savePostToggle } = useContext(UsersContext) as UsersContextTypes;
   const { deletePost } = useContext(PostsContext) as PostsContextTypes;
-  const [creator, setCreator] = useState<User | undefined>(undefined);
-
-  const findCreator = () => {
-    const foundUser = findUserById(data.posterId);
-    setCreator(foundUser as User);
-  };
+  const [creator, setCreator] = useState<User | null>(null);
 
   useEffect(() => {
-    findCreator();
+    const foundUser = findUserById(data.posterId);
+    setCreator(foundUser as User);
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [data.posterId]);
 
   return (
     <StyledDiv>
@@ -107,14 +103,13 @@ const PostCard = ({ data }: Props) => {
       </div>
       <div className="actions">
         {
-          loggedInUser ?
-          <button>Save</button> :
-          <></>
+          loggedInUser?.savedPosts.includes(data.id) ?
+          <button onClick={() => savePostToggle(data.id)}>Unsave</button> :
+          <button onClick={() => savePostToggle(data.id)}>Save</button>
         }
         {
-          loggedInUser?.id === data.posterId ?
-          <button onClick={() => deletePost(data.id)}>Delete</button> :
-          <></>
+          loggedInUser?.id === data.posterId &&
+          <button onClick={() => deletePost(data.id)}>Delete</button>
         }
       </div>
     </StyledDiv>

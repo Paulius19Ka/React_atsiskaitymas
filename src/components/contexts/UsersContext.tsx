@@ -1,9 +1,11 @@
 import { createContext, useEffect, useReducer, useState } from "react";
-import { ChildProp, User, UsersContextTypes } from "../../types";
+import { ChildProp, User, UsersContextTypes, Post } from "../../types";
 
 type ActionTypes = 
 { type: 'setData', data: User[] } |
-{ type: 'addUser', newUser: User }
+{ type: 'addUser', newUser: User } |
+{ type: 'savePost', userId: User['id'], postId: Post['id'] } |
+{ type: 'unsavePost', userId: User['id'], postId: Post['id'] }
 
 const reducer = (state: User[], action: ActionTypes): User[] => {
   switch(action.type){
@@ -11,6 +13,28 @@ const reducer = (state: User[], action: ActionTypes): User[] => {
       return action.data;
     case 'addUser':
       return [...state, action.newUser];
+    case 'savePost':
+      return state.map(user => {
+        if(user.id === action.userId){
+          return {
+            ...user,
+            savedPosts: [...user.savedPosts, action.postId]
+          }
+        } else {
+          return user;
+        }
+      });
+    case 'unsavePost':
+      return state.map(user => {
+        if(user.id === action.userId){
+          return {
+            ...user,
+            savedPosts: user.savedPosts.filter(postId => postId !== action.postId)
+          }
+        } else {
+          return user;
+        }
+      });
     default:
       console.error('Something went wrong');
       return state;
@@ -31,12 +55,15 @@ const UsersProvider = ({ children }: ChildProp) => {
         data
       }));
 
-      const storedUser = localStorage.getItem('loggedInUser') ?
-      JSON.parse(localStorage.getItem('loggedInUser') as string) : null;
-      if(storedUser){
-        setLoggedInUser(storedUser);
-      }
   }, []);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem('loggedInUser') ?
+    JSON.parse(localStorage.getItem('loggedInUser') as string) : null;
+    if(storedUser){
+      setLoggedInUser(storedUser); // improve this. probably not a good idea to save the whole user
+    };
+  }, [])
 
   const addUser = (newUser: User) => {
     fetch(`http://localhost:8080/users`, {
@@ -63,6 +90,39 @@ const UsersProvider = ({ children }: ChildProp) => {
     return users.find(user => user.id === id);
   }
 
+  const savePostToggle = (id: Post['id']) => {
+    if(loggedInUser){
+      const postSaved = loggedInUser.savedPosts.includes(id);
+      const newSavedPosts = postSaved ?
+      loggedInUser.savedPosts.filter(postId => postId !== id) :
+      [...loggedInUser.savedPosts, id];
+
+      setLoggedInUser({
+        ...loggedInUser,
+        savedPosts: newSavedPosts
+      });
+
+      localStorage.setItem('loggedInUser', JSON.stringify({
+        ...loggedInUser,
+        savePosts: newSavedPosts
+      }));
+
+      dispatch({
+        type: postSaved ? 'unsavePost' : 'savePost',
+        postId: id,
+        userId: loggedInUser.id
+      });
+
+      fetch(`http://localhost:8080/users/${loggedInUser.id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type":"application/json"
+        },
+        body: JSON.stringify({ savedPosts: newSavedPosts })
+      });
+    }
+  }
+
   return (
     <UsersContext.Provider
       value={{
@@ -71,7 +131,8 @@ const UsersProvider = ({ children }: ChildProp) => {
         loggedInUser,
         setLoggedInUser,
         findUserByMail,
-        findUserById
+        findUserById,
+        savePostToggle
       }}
     >
       { children }
