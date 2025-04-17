@@ -9,7 +9,14 @@ export type UsersContextTypes = {
   addUser: (newUser: User) => void,
   loggedInUser: User | null,
   setLoggedInUser: React.Dispatch<React.SetStateAction<User | null>>,
-  findUser: (formikValues: Partial<User>) => User | undefined
+  findUserByMail: (formikValues: Partial<User>) => User | undefined,
+  findUserById: (id: User["id"]) => User | undefined
+}
+
+export type PostsContextTypes = {
+  posts: Post[],
+  addPost: (newPost: Post) => void,
+  deletePost: (id: Post["id"]) => void
 }
 
 export type User = {
@@ -19,5 +26,15 @@ export type User = {
   password: string,
   avatar: string,
   dob: string,
-  role: 'admin' | 'user'
+  role: 'admin' | 'user',
+  savedPosts: Post['id'][]
+}
+
+export type Post = {
+  id: string,
+  posterId: User['id'],
+  dateOfPost: string,
+  picture: string,
+  title: string,
+  content: string
 }

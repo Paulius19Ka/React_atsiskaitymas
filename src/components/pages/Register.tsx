@@ -9,7 +9,7 @@ import { User, UsersContextTypes } from '../../types';
 
 const Register = () => {
 
-  const { setLoggedInUser, addUser, findUser } = useContext(UsersContext) as UsersContextTypes;
+  const { setLoggedInUser, addUser, findUserByMail } = useContext(UsersContext) as UsersContextTypes;
   const navigate = useNavigate();
   const [error, setError] = useState('');
 
@@ -23,6 +23,7 @@ const Register = () => {
       avatar: '',
       dob: '',
       role: 'user' as const,
+      savedPosts: [],
       stayLoggedIn: false
     },
     validationSchema: Yup.object({
@@ -56,7 +57,7 @@ const Register = () => {
     }),
     onSubmit: (values) => {
       // console.log(values);
-      const foundUser = findUser(values) as User;
+      const foundUser = findUserByMail(values) as User;
       if(foundUser){
         setError('User already exists.');
       } else {
