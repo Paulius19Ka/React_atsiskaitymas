@@ -19,6 +19,7 @@ const App = () => {
     if(storedUser){
       setLoggedInUser(JSON.parse(storedUser) as User);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
 

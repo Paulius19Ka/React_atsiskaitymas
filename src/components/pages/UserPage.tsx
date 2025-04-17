@@ -11,7 +11,7 @@ const UserPage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if(posts !== undefined && posts !== null){
+    if(posts !== undefined && posts !== null && posts.length > 0){
       setLoading(false);
     };
   }, [posts]);
@@ -23,10 +23,10 @@ const UserPage = () => {
       <div>
         {
           !loggedInUser || loading ?
-          <p>Loading</p> :
+          <img src='/media/loadingCircle.gif' alt='loading circle animation' /> :
           posts.length === 0 ?
           <p>No posts to display</p> :
-          loggedInUser.savedPosts.length === 0 ?
+          loggedInUser.savedPosts?.length === 0 ?
           <p>No saved posts</p> :
           posts.filter(post => loggedInUser.savedPosts.includes(post.id)).map(post =>
             <PostCard
