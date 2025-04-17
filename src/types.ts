@@ -12,6 +12,10 @@ export type UsersContextTypes = {
   findUser: (formikValues: Partial<User>) => User | undefined
 }
 
+export type PostsContextTypes = {
+  posts: Post[]
+}
+
 export type User = {
   id: string,
   username: string,
@@ -20,5 +24,13 @@ export type User = {
   avatar: string,
   dob: string,
   role: 'admin' | 'user',
-  savedPosts: string[]
+  savedPosts: Post['id'][]
+}
+
+export type Post = {
+  id: string,
+  posterId: User['id'],
+  dateOfPost: string,
+  picture: string,
+  content: string
 }
