@@ -21,6 +21,16 @@
       "dob": "1993-03-08",
       "role": "user",
       "savedPosts": []
+    },
+    {
+      "id": "0832feb0-1fb3-4bbb-bc41-c0c015c33036",
+      "username": "NePaulius",
+      "email": "nepaulius@email.com",
+      "password": "Pass321@",
+      "avatar": "https://img.freepik.com/free-photo/serious-young-african-man-standing-isolated_171337-9633.jpg",
+      "dob": "1999-01-02",
+      "role": "user",
+      "savedPosts": []
     }
   ],
   "posts": [
@@ -47,6 +57,14 @@
       "title": "Random dogs",
       "picture": "https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg",
       "content": "Random dogs to test whether this works or not."
+    },
+    {
+      "id": "31864083-6314-4d0b-8a0d-56aa93846a0a",
+      "posterId": "0832feb0-1fb3-4bbb-bc41-c0c015c33036",
+      "dateOfPost": "Thu Apr 17 2025 15:41:40 GMT+0300 (Eastern European Summer Time)",
+      "title": "Other users post",
+      "picture": "https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg",
+      "content": "Random image of a random elephant."
     }
   ]
 }
