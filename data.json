@@ -1,4 +1,14 @@
 {
-  "users": [],
+  "users": [
+    {
+      "id": "qweisalkdsanlm",
+      "username": "admin",
+      "email": "admin@admin.com",
+      "password": "Password1@",
+      "avatar": "https://static.vecteezy.com/system/resources/thumbnails/019/194/935/small_2x/global-admin-icon-color-outline-vector.jpg",
+      "dob": "1993-03-08",
+      "role": "admin"
+    }
+  ],
   "posts": []
 }
