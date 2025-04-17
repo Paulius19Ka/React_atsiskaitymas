@@ -74,11 +74,11 @@ const Register = () => {
 
         setLoggedInUser(newUser as User);
         addUser(newUser as User);
-        setSuccessMsg('Registration complete.')
+        setSuccessMsg('Registration complete.');
 
         setTimeout(() => {
           navigate('/');
-        }, 1500);
+        }, 1000);
       }
     }
   })

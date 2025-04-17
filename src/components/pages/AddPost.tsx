@@ -45,10 +45,11 @@ const AddPost = () => {
         values.posterId = loggedInUser?.id;
         values.dateOfPost = new Date().toString();
         addPost(values);
-        setSuccessMsg('Post added sussessfully.')
+        setSuccessMsg('Post added sussessfully.');
+        
         setTimeout(() => {
           navigate('/');
-        }, 500);
+        }, 1000);
       }
     },
   })
