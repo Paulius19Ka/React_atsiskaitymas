@@ -85,7 +85,7 @@ const PostCard = ({ data }: Props) => {
   useEffect(() => {
     findCreator();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [data.posterId]);
 
   return (
     <StyledDiv>

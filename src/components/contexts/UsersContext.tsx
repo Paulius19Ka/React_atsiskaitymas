@@ -31,12 +31,15 @@ const UsersProvider = ({ children }: ChildProp) => {
         data
       }));
 
-      const storedUser = localStorage.getItem('loggedInUser') ?
-      JSON.parse(localStorage.getItem('loggedInUser') as string) : null;
-      if(storedUser){
-        setLoggedInUser(storedUser);
-      }
   }, []);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem('loggedInUser') ?
+    JSON.parse(localStorage.getItem('loggedInUser') as string) : null;
+    if(storedUser){
+      setLoggedInUser(storedUser);
+    };
+  }, [])
 
   const addUser = (newUser: User) => {
     fetch(`http://localhost:8080/users`, {

@@ -52,6 +52,10 @@ const PostsProvider = ({ children }: ChildProp) => {
     });
   };
 
+  const findPostById = (id: Post['id']): Post | undefined => {
+    return posts.find(post => post.id === id);
+  }
+
   useEffect(() => {
     fetch(`http://localhost:8080/posts`)
       .then(res => res.json())
@@ -66,7 +70,8 @@ const PostsProvider = ({ children }: ChildProp) => {
       value={{
         posts,
         addPost,
-        deletePost
+        deletePost,
+        findPostById
       }}
     >
       { children }
