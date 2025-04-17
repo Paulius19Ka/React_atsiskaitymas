@@ -19,8 +19,8 @@ const App = () => {
       <Routes>
         <Route path='' element={<MainOutlet />}>
           <Route index element={<Home />} />
-          <Route path='login' element={!loggedInUser ? <Login /> : <Navigate to='/user' />} />
-          <Route path='register' element={!loggedInUser ? <Register /> : <Navigate to='/user' />} />
+          <Route path='login' element={<Login />} />
+          <Route path='register' element={<Register />} />
           <Route path='add' element={loggedInUser ? <AddPost /> : <Navigate to='/login' replace />} />
           <Route path='user' element={loggedInUser ? <UserPage /> : <Navigate to='/login' replace />} />
         </Route>

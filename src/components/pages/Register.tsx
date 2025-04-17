@@ -9,7 +9,7 @@ import { User, UsersContextTypes } from '../../types';
 
 const Register = () => {
 
-  const { setLoggedInUser, addUser, findUserByMail } = useContext(UsersContext) as UsersContextTypes;
+  const { setLoggedInUser, addUser, users } = useContext(UsersContext) as UsersContextTypes;
   const navigate = useNavigate();
   const [error, setError] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
@@ -57,28 +57,31 @@ const Register = () => {
         .required('Enter your birth date.')
     }),
     onSubmit: (values) => {
-      // console.log(values);
-      const foundUser = findUserByMail(values) as User;
-      if(foundUser){
-        setError('User already exists.');
-      } else {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const { passwordRepeat, stayLoggedIn, ...newUser } = values;
-        
-        newUser.id = genID();
-        newUser.role = 'user';
-
-        if(values.stayLoggedIn){
-          localStorage.setItem('loggedInUser', JSON.stringify(newUser));
+      if(users){
+        const foundUser = users.find(user =>
+          user.email === values.email ||
+          user.username === values.username
+        )
+        if(foundUser){
+          setError('User already exists.');
+        } else {
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          const { passwordRepeat, stayLoggedIn, ...newUser } = values;
+          
+          newUser.id = genID();
+          newUser.role = 'user';
+  
+          if(values.stayLoggedIn){
+            localStorage.setItem('loggedInUser', JSON.stringify(newUser));
+          }
+  
+          setLoggedInUser(newUser as User);
+          addUser(newUser as User);
+          setSuccessMsg('Registration complete.');
+          setTimeout(() => {
+            navigate('/');
+          }, 1000);
         }
-
-        setLoggedInUser(newUser as User);
-        addUser(newUser as User);
-        setSuccessMsg('Registration complete.');
-
-        setTimeout(() => {
-          navigate('/');
-        }, 1000);
       }
     }
   })
