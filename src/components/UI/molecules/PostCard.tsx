@@ -49,6 +49,13 @@ const StyledDiv = styled.div`
       object-fit: cover;
       border-radius: 15px;
     }
+
+    > p{
+      margin: 5px 0;
+      width: 100%;
+
+      overflow-wrap: break-word;
+    }
   }
 
   > div.actions{
@@ -68,6 +75,10 @@ const StyledDiv = styled.div`
         background-color: #939393;
       }
     }
+  }
+
+  @media (min-width: 768px){
+    width: 400px;
   }
 `;
 

@@ -5,7 +5,7 @@ import SchoolIcon from '@mui/icons-material/School';
 
 const StyledFooter = styled.footer`
   height: 150px;
-  background-color: var(--background-main);
+  background-color: var(--background-secondary);
 
   display: flex;
   flex-direction: column;
@@ -13,7 +13,7 @@ const StyledFooter = styled.footer`
   align-items: center;
 
   > div.links{
-    background-color: var(--background-secondary);
+    background-color: var(--background-tertiary);
     width: 100%;
     height: 25px;
 
@@ -58,7 +58,7 @@ const StyledFooter = styled.footer`
   > div.copyright{
     width: 100%;
     height: 25px;
-    background-color: var(--background-main-dark);
+    background-color: var(--background-tertiary);
 
     display: flex;
     justify-content: center;

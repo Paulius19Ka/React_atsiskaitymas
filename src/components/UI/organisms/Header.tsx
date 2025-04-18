@@ -8,7 +8,7 @@ import { UsersContextTypes } from "../../../types";
 
 const StyledHeader = styled.header`
   height: 100px;
-  background-color: var(--background-main);
+  background-color: var(--background-main-dark);
   padding: 0 20px;
 
   display: flex;

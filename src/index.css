@@ -19,8 +19,8 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: #ffffffde;
-  background-color: #242424;
+  color: var(--font-main);
+  background-color: var(--background-main);
 }
 
 *{
