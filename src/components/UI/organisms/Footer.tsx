@@ -72,9 +72,9 @@ const Footer = () => {
     <StyledFooter>
       <div className="links">
         <ul>
-          <li><a href="https://github.com/Paulius19Ka/React_atsiskaitymas"><GitHubIcon /></a></li>
-          <li><a href="https://www.facebook.com/paulius.karbauskas/"><FacebookIcon /></a></li>
-          <li><a href="https://codeacademy.lt/programavimo-kursai/jaunesniojo-front-end-typescript-programuotojo-kompetenciju-programa-su-di-223003473/"><SchoolIcon /></a></li>
+          <li><a href="https://github.com/Paulius19Ka/React_atsiskaitymas" target="_blank"><GitHubIcon /></a></li>
+          <li><a href="https://www.facebook.com/paulius.karbauskas/" target="_blank"><FacebookIcon /></a></li>
+          <li><a href="https://codeacademy.lt/programavimo-kursai/jaunesniojo-front-end-typescript-programuotojo-kompetenciju-programa-su-di-223003473/" target="_blank"><SchoolIcon /></a></li>
         </ul>
       </div>
       <div className="terms">
