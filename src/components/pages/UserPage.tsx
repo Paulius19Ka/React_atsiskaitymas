@@ -44,7 +44,9 @@ const UserPage = () => {
           <p>No posts to display</p> :
           loggedInUser.savedPosts?.length === 0 ?
           <p>No saved posts</p> :
-          posts.filter(post => loggedInUser.savedPosts.includes(post.id)).map(post =>
+          posts.filter(post => loggedInUser.savedPosts.includes(post.id))
+          .sort((a, b) => new Date(b.dateOfPost).getTime() - new Date(a.dateOfPost).getTime())
+          .map(post =>
             <PostCard
               data={post}
               key={post.id}
