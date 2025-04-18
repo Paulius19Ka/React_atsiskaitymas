@@ -34,7 +34,9 @@ const Home = () => {
           <img src='/media/loadingCircle.gif' alt='loading circle animation' /> :
           posts.length === 0 ?
           <p>No posts exist.</p> :
-          posts.map(post =>
+          // sort by date, then map
+          posts.sort((a, b) => new Date(b.dateOfPost).getTime() - new Date(a.dateOfPost).getTime())
+          .map(post =>
             <PostCard
               data={post}
               key={post.id}

@@ -1,5 +1,6 @@
-import { createContext, useEffect, useReducer, useState } from "react";
-import { ChildProp, User, UsersContextTypes, Post } from "../../types";
+import { createContext, useContext, useEffect, useReducer, useState } from "react";
+import { ChildProp, User, UsersContextTypes, Post, PostsContextTypes } from "../../types";
+import PostsContext from "./PostsContext";
 
 type ActionTypes = 
 { type: 'setData', data: User[] } |
@@ -46,6 +47,7 @@ const UsersProvider = ({ children }: ChildProp) => {
 
   const [users, dispatch] = useReducer(reducer, []);
   const [loggedInUser, setLoggedInUser] = useState<User | null>(null);
+  const { posts } = useContext(PostsContext) as PostsContextTypes;
 
   useEffect(() => {
     fetch(`http://localhost:8080/users`)
@@ -58,12 +60,36 @@ const UsersProvider = ({ children }: ChildProp) => {
   }, []);
 
   useEffect(() => {
-    const storedUser = localStorage.getItem('loggedInUser') ?
+    const storedUser: User = localStorage.getItem('loggedInUser') ?
     JSON.parse(localStorage.getItem('loggedInUser') as string) : null;
-    if(storedUser){
-      setLoggedInUser(storedUser); // improve this. probably not a good idea to save the whole user
+
+    if(storedUser && posts.length > 0){
+
+      // remove non existant posts from saved posts
+      const existingPosts = posts.map(post => post.id);
+      const filterSavedPosts = storedUser.savedPosts.filter(postId => existingPosts.includes(postId));
+
+      const doSavedPostsMatch = storedUser.savedPosts.every(postId => filterSavedPosts.includes(postId)) &&
+      filterSavedPosts.every(postId => storedUser.savedPosts.includes(postId));
+
+      if(!doSavedPostsMatch){
+        const updatedUser: User = { ...storedUser, savedPosts: filterSavedPosts };
+        setLoggedInUser(updatedUser);
+        localStorage.setItem('loggedInUser', JSON.stringify(updatedUser));
+
+        // patch the user with updated saved posts
+        fetch(`http://localhost:8080/users/${storedUser.id}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type":"application/json"
+          },
+          body: JSON.stringify({ savedPosts: filterSavedPosts })
+        });
+      } else {
+        setLoggedInUser(storedUser);
+      };
     };
-  }, [])
+  }, [posts]);
 
   const addUser = (newUser: User) => {
     fetch(`http://localhost:8080/users`, {
