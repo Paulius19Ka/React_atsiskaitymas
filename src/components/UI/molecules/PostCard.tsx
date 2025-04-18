@@ -14,9 +14,13 @@ const StyledDiv = styled.div`
   gap: 10px;
 
   width: 90%;
-  background-color: #171717;
+  background-color: var(--background-main-dark);
   padding: 20px 20px;
   border-radius: 15px;
+
+  &:hover{
+    box-shadow: 0px 0px 20px var(--background-tertiary);
+  }
 
   > div.userInfo{
     display: flex;
@@ -68,11 +72,11 @@ const StyledDiv = styled.div`
       border-radius: 10px;
       padding: 5px 10px;
       font-size: 1rem;
-      background-color: #5d5d5d;
+      background-color: var(--button-main);
 
       &:hover{
         cursor: pointer;
-        background-color: #939393;
+        background-color: var(--accent-main);
       }
     }
   }

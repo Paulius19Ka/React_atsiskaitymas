@@ -58,7 +58,7 @@ const StyledFooter = styled.footer`
   > div.copyright{
     width: 100%;
     height: 25px;
-    background-color: var(--background-tertiary);
+    background-color: var(--background-main);
 
     display: flex;
     justify-content: center;
