@@ -79,6 +79,43 @@ const StyledDiv = styled.div`
         background-color: var(--accent-main);
       }
     }
+
+    > div{
+      display: flex;
+      gap: 5px;
+
+      > span{
+        color: var(--accent-main);
+        font-size: 0.8rem;
+        align-self: center;
+      }
+
+      > button{
+        border: none;
+        border-radius: 10px;
+        padding: 5px 10px;
+        font-size: 1rem;
+        background-color: var(--button-main);
+
+        &:hover{
+          cursor: pointer;
+          background-color: var(--accent-main);
+        }
+      }
+      > button.yes{
+
+        &:hover{
+          background-color: var(--message-success);
+        }
+      }
+
+      > button.no{
+
+        &:hover{
+          background-color: var(--message-error);
+        }
+      }
+    }
   }
 
   @media (min-width: 768px){
@@ -102,6 +139,7 @@ const PostCard = ({ data }: Props) => {
   const { loggedInUser, findUserById, savePostToggle } = useContext(UsersContext) as UsersContextTypes;
   const { deletePost } = useContext(PostsContext) as PostsContextTypes;
   const [creator, setCreator] = useState<User | null>(null);
+  const [deleteConfirm, setDeleteConfirm] = useState(false);
 
   useEffect(() => {
     const foundUser = findUserById(data.posterId);
@@ -135,7 +173,17 @@ const PostCard = ({ data }: Props) => {
         }
         {
           loggedInUser?.id === data.posterId &&
-          <button onClick={() => deletePost(data.id)}>Delete</button>
+          (
+            !deleteConfirm ?
+            <div>
+              <button onClick={() => setDeleteConfirm(true)}>Delete</button>
+            </div> :
+            <div>
+              <span>Delete this post?</span>
+              <button onClick={() => deletePost(data.id)} className="yes">Yes</button>
+              <button onClick={() => setDeleteConfirm(false)} className="no">No</button>
+            </div>
+          )
         }
       </div>
     </StyledDiv>
