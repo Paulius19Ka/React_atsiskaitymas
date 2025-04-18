@@ -91,6 +91,7 @@ const StyledDiv = styled.div`
       }
 
       > button{
+        min-width: 50px;
         border: none;
         border-radius: 10px;
         padding: 5px 10px;
