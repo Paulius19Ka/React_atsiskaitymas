@@ -2,11 +2,97 @@ import { useContext, useState } from "react";
 import { useFormik } from 'formik';
 import { Link, useNavigate } from "react-router";
 import * as Yup from 'yup';
-// import bcrypt from 'bcryptjs';
+import bcrypt from "bcryptjs";
+import styled from "styled-components";
 
 import UsersContext from "../contexts/UsersContext";
 import { UsersContextTypes } from "../../types";
-import bcrypt from "bcryptjs";
+
+const StyledSection = styled.section`
+  > h2{
+    text-align: center;
+    font-size: 1.6rem;
+    margin: 10px 0px;
+  }
+
+  p.errorMsg, p.successMsg{
+    margin: 0;
+    font-size: 0.8rem;
+  }
+
+  p.errorMsg{
+    color: var(--message-error);
+    text-align: start;
+  }
+
+  p.successMsg{
+    color: var(--message-success);
+  }
+
+  > form{
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    > div{
+      width: 250px;
+      
+      > div{
+        display: flex;
+        gap: 5px;
+
+        > input{
+          width: 100%;
+          border: none;
+          background-color: var(--background-secondary);
+          color: var(--font-main);
+
+          &::placeholder{
+            color: var(--background-tertiary);
+          }
+        }
+      }
+    }
+
+    > div.checkbox{
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    > input[type="submit"]{
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      background-color: var(--button-main);
+      font-size: 1rem;
+      font-weight: bold;
+
+      &:hover{
+        cursor: pointer;
+        background-color: var(--accent-main);
+      }
+    }
+
+    > p{
+      margin: 0;
+      font-size: 1rem;
+
+      > a{
+        text-decoration: none;
+        color: var(--accent-main);
+        font-weight: bold;
+
+        &:hover{
+          color: var(--accent-hover);
+        }
+      }
+    }
+  }
+`;
 
 const Login = () => {
 
@@ -57,36 +143,40 @@ const Login = () => {
   })
 
   return (
-    <section>
+    <StyledSection>
       <h2>Login</h2>
       <form onSubmit={formik.handleSubmit}>
         <div>
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            id="email" name="email"
-            onBlur={formik.handleBlur}
-            onChange={formik.handleChange}
-            placeholder="enter your email..."
-          />
+          <div>
+            <label htmlFor="email">Email:</label>
+            <input
+              type="email"
+              id="email" name="email"
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+              placeholder="enter your email..."
+            />
+          </div>
           {
-            formik.errors.email && formik.touched.email && <p style={{ color: "red" }}>{formik.errors.email}</p>
+            formik.errors.email && formik.touched.email && <p className="errorMsg">{formik.errors.email}</p>
           }
         </div>
         <div>
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password" name="password"
-            onBlur={formik.handleBlur}
-            onChange={formik.handleChange}
-            placeholder="enter your password..."
-          />
+          <div>
+            <label htmlFor="password">Password:</label>
+            <input
+              type="password"
+              id="password" name="password"
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+              placeholder="enter your password..."
+            />
+          </div>
           {
-            formik.errors.password && formik.touched.password && <p style={{ color: "red" }}>{formik.errors.password}</p>
+            formik.errors.password && formik.touched.password && <p className="errorMsg">{formik.errors.password}</p>
           }
         </div>
-        <div>
+        <div className="checkbox">
           <input
             type="checkbox"
             name="stayLoggedIn" id="stayLoggedIn"
@@ -97,14 +187,14 @@ const Login = () => {
         </div>
         <input type="submit" />
         {
-          error && <p style={{ color: "red" }}>{error}</p>
+          error && <p className="errorMsg">{error}</p>
         }
         {
-          successMsg && <p style={{ color: "green" }}>{successMsg}</p>
+          successMsg && <p className="successMsg">{successMsg}</p>
         }
         <p>Don't have an account yet? Click <Link to='/register'>here</Link> to register.</p>
       </form>
-    </section>
+    </StyledSection>
   );
 }
  
