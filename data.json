@@ -74,6 +74,14 @@
       "title": "testt",
       "picture": "https://london.bridestory.com/images/c_fill,dpr_1.0,f_auto,fl_progressive,pg_1,q_80,w_680/v1/assets/aga-tomaszek-cardiff-wedding-photographer_5559_mkzhie/aga-tomaszek-photography_random-portfolio-images_1.jpg",
       "content": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    {
+      "id": "5276f73b-9936-4c85-87ee-8d0be5cd651b",
+      "posterId": "1a266afa-3284-4481-8341-c9c26ea5f72c",
+      "dateOfPost": "Fri Apr 18 2025 12:02:32 GMT+0300 (Eastern European Summer Time)",
+      "title": "test2",
+      "picture": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png",
+      "content": "random paragraph random random"
     }
   ]
 }
