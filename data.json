@@ -34,7 +34,9 @@
       "role": "user",
       "savedPosts": [
         "787a1d23-fd3e-4280-9c3f-091bbc4b7129",
-        "31864083-6314-4d0b-8a0d-56aa93846a0a"
+        "31864083-6314-4d0b-8a0d-56aa93846a0a",
+        "9f8fbd18-65a4-40e4-a64d-58a022650e7b",
+        "41414249-4e34-441d-be67-d636b39bfb3c"
       ]
     },
     {
@@ -56,6 +58,22 @@
       "title": "Testing",
       "picture": "https://london.bridestory.com/images/c_fill,dpr_1.0,f_auto,fl_progressive,pg_1,q_80,w_680/v1/assets/aga-tomaszek-cardiff-wedding-photographer_5559_mkzhie/aga-tomaszek-photography_random-portfolio-images_1.jpg",
       "content": "test test test test test test test test test test test test test test test "
+    },
+    {
+      "id": "41414249-4e34-441d-be67-d636b39bfb3c",
+      "posterId": "0832feb0-1fb3-4bbb-bc41-c0c015c33036",
+      "dateOfPost": "Fri Apr 18 2025 09:16:38 GMT+0300 (Eastern European Summer Time)",
+      "title": "Chameleon",
+      "picture": "https://letsenhance.io/static/73136da51c245e80edc6ccfe44888a99/1015f/MainBefore.jpg",
+      "content": "Chameleons are fascinating reptiles known for their ability to change color, a skill that helps them regulate temperature and communicate rather than simply camouflage. Found primarily in Africa and Madagascar, these creatures have uniquely adapted feet for gripping branches, independently moving eyes for scanning surroundings, and long, sticky tongues capable of striking prey with precision in milliseconds."
+    },
+    {
+      "id": "f1554de5-67f1-44bd-a0fe-2c0b05015102",
+      "posterId": "0832feb0-1fb3-4bbb-bc41-c0c015c33036",
+      "dateOfPost": "Fri Apr 18 2025 09:17:00 GMT+0300 (Eastern European Summer Time)",
+      "title": "testt",
+      "picture": "https://london.bridestory.com/images/c_fill,dpr_1.0,f_auto,fl_progressive,pg_1,q_80,w_680/v1/assets/aga-tomaszek-cardiff-wedding-photographer_5559_mkzhie/aga-tomaszek-photography_random-portfolio-images_1.jpg",
+      "content": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     }
   ]
 }

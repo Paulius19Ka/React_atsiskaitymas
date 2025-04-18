@@ -17,7 +17,8 @@ export type PostsContextTypes = {
   posts: Post[],
   addPost: (newPost: Post) => void,
   deletePost: (id: Post["id"]) => void,
-  findPostById: (id: Post["id"]) => Post | undefined
+  findPostById: (id: Post["id"]) => Post | undefined,
+  loading: boolean
 }
 
 export type User = {

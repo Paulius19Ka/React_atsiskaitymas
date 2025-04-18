@@ -1,45 +1,116 @@
 import { useContext } from "react";
 import { NavLink, useNavigate } from "react-router";
 import styled from "styled-components";
+import LogoutIcon from '@mui/icons-material/Logout';
 
 import UsersContext from "../../contexts/UsersContext";
 import { UsersContextTypes } from "../../../types";
 
 const StyledHeader = styled.header`
   height: 100px;
-  background-color: black;
+  background-color: var(--background-main);
+  padding: 0 20px;
 
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
+
+  > img{
+    height: 50%;
+    width: auto;
+    cursor: pointer;
+
+    &:hover{
+      filter: brightness(1.5);
+    }
+  }
 
   > nav{
 
     > ul{
       display: flex;
       justify-content: space-between;
+      align-items: center;
       gap: 20px;
 
       > li{
         list-style-type: none;
 
         > a{
-          color: white;
+          color: var(--font-main);
           text-decoration: none;
+          font-weight: 600;
 
           &.active{
-            color: red;
+            color: var(--accent-main);
           }
         }
 
         > div{
-          
+          display: flex;
+          gap: 10px;
+          align-items: center;
           > a{
-            color: yellow;
+            color: var(--font-main);
             text-decoration: none;
+            font-weight: 700;
+
+            display: flex;
+            align-items: center;
+            gap: 5px;
+
+            > img{
+              width: 35px;
+              height: 35px;
+              object-fit: cover;
+              border-radius: 35px;
+            }
+
+            &:hover{
+              color: var(--font-hover);
+
+              > img{
+                filter: brightness(0.8);
+              }
+            }
 
             &.active{
-              color: red;
+              color: var(--font-active);
+
+              > img{
+                filter: brightness(0.6);
+              }
+            }
+          }
+
+          > svg{
+            cursor: pointer;
+            color: var(--font-hover);
+
+            &:hover{
+              color: var(--font-main);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media (min-width: 768px){
+    padding: 0px 60px;
+
+    > nav{
+
+      > ul{
+        gap: 40px;
+
+        > li{
+
+          > div{
+            gap: 20px;
+
+            > a{
+              gap: 15px;
             }
           }
         }
@@ -61,22 +132,25 @@ const Header = () => {
 
   return (
     <StyledHeader>
-      <span>IMAGE</span>
+      <img onClick={() => navigate('/')} src="/public/media/favicon_placeholder.png" alt="favicon placeholder image" />
       <nav>
         <ul>
-          <li><NavLink to=''>home</NavLink></li>
+          <li><NavLink to=''>HOME</NavLink></li>
           {
             !loggedInUser ?
             <>
-              <li><NavLink to='/login'>login</NavLink></li>
-              <li><NavLink to='/register'>register</NavLink></li>
+              <li><NavLink to='/login'>LOGIN</NavLink></li>
+              <li><NavLink to='/register'>REGISTER</NavLink></li>
             </> :
             <>
-              <li><NavLink to='/add'>add</NavLink></li>
+              <li><NavLink to='/add'>ADD</NavLink></li>
               <li>
                 <div>
-                  <NavLink to={`/user`}>{loggedInUser.username}</NavLink>
-                  <button onClick={() => handleLogout()}>Logout</button>
+                  <NavLink to={`/user`}>
+                    <img src={loggedInUser.avatar} alt={`${loggedInUser.username} avatar`} />
+                    <span>{loggedInUser.username}</span>
+                  </NavLink>
+                  <LogoutIcon onClick={() => handleLogout()}/>
                 </div>
               </li>
             </>

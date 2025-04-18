@@ -1,4 +1,4 @@
-import { createContext, useEffect, useReducer } from "react";
+import { createContext, useEffect, useReducer, useState } from "react";
 import { Post, PostsContextTypes, ChildProp } from "../../types";
 
 type ActionTypes =
@@ -24,6 +24,7 @@ const PostsContext = createContext<PostsContextTypes | undefined>(undefined);
 const PostsProvider = ({ children }: ChildProp) => {
 
   const [posts, dispatch] = useReducer(reducer, []);
+  const [loading, setLoading] = useState(false);
 
   const addPost = (newPost: Post) => {
     fetch(`http://localhost:8080/posts`, {
@@ -57,12 +58,18 @@ const PostsProvider = ({ children }: ChildProp) => {
   }
 
   useEffect(() => {
+    setLoading(true);
     fetch(`http://localhost:8080/posts`)
     .then(res => res.json())
-    .then((data: Post[]) => dispatch({
-      type: "setData",
-      data
-  }));
+    .then((data: Post[]) => {
+      dispatch({
+        type: "setData",
+        data
+      });
+    })
+    .finally(() => {
+      setLoading(false);
+    });
   }, []);
 
   return (
@@ -71,7 +78,8 @@ const PostsProvider = ({ children }: ChildProp) => {
         posts,
         addPost,
         deletePost,
-        findPostById
+        findPostById,
+        loading
       }}
     >
       { children }

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import UsersContext from "../contexts/UsersContext";
 import { PostsContextTypes, UsersContextTypes } from "../../types";
 import PostsContext from "../contexts/PostsContext";
@@ -7,14 +7,7 @@ import PostCard from "../UI/molecules/PostCard";
 const UserPage = () => {
 
   const { loggedInUser } = useContext(UsersContext) as UsersContextTypes;
-  const { posts } = useContext(PostsContext) as PostsContextTypes;
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    if(posts !== undefined && posts !== null && posts.length > 0){
-      setLoading(false);
-    };
-  }, [posts]);
+  const { posts, loading } = useContext(PostsContext) as PostsContextTypes;
 
   return (
     <section>
