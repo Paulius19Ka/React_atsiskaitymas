@@ -8,7 +8,7 @@ import { UsersContextTypes } from "../../../types";
 
 const StyledHeader = styled.header`
   height: 100px;
-  background-color: var(--background-main);
+  background-color: var(--background-main-dark);
   padding: 0 20px;
 
   display: flex;
@@ -147,7 +147,11 @@ const Header = () => {
               <li>
                 <div>
                   <NavLink to={`/user`}>
-                    <img src={loggedInUser.avatar} alt={`${loggedInUser.username} avatar`} />
+                    {
+                      loggedInUser.avatar ?
+                      <img src={loggedInUser.avatar} alt={`${loggedInUser.username} avatar`} /> :
+                      <img src='https://t3.ftcdn.net/jpg/08/05/28/22/360_F_805282248_LHUxw7t2pnQ7x8lFEsS2IZgK8IGFXePS.jpg' alt='placeholder profile picture' />
+                    }
                     <span>{loggedInUser.username}</span>
                   </NavLink>
                   <LogoutIcon onClick={() => handleLogout()}/>

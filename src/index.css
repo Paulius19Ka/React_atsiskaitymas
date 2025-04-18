@@ -12,6 +12,10 @@
   --button-hover: #bdbdbd;
 
   --accent-main: #6ed6ff;
+  --accent-hover: #c2eeff;
+
+  --message-error: #ff5c5c;
+  --message-success: #65ff7c;
 
 
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -19,8 +23,8 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: #ffffffde;
-  background-color: #242424;
+  color: var(--font-main);
+  background-color: var(--background-main);
 }
 
 *{

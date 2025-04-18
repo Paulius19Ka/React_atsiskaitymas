@@ -2,11 +2,99 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useContext, useState } from 'react';
 import { v4 as genID } from 'uuid';
-import { useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import bcrypt from 'bcryptjs';
 
 import UsersContext from '../contexts/UsersContext';
 import { User, UsersContextTypes } from '../../types';
+import styled from 'styled-components';
+
+const StyledSection = styled.section`
+  > h2{
+    text-align: center;
+    font-size: 1.6rem;
+    margin: 10px 0px;
+  }
+
+  p.errorMsg, p.successMsg{
+    margin: 0;
+    font-size: 0.8rem;
+  }
+
+  p.errorMsg{
+    color: var(--message-error);
+    text-align: start;
+  }
+
+  p.successMsg{
+    color: var(--message-success);
+  }
+
+  > form{
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    > div{
+      width: 350px;
+      
+      > div{
+        display: flex;
+        gap: 5px;
+        width: 100%;
+
+        > input{
+          flex-grow: 1;
+          border: none;
+          background-color: var(--background-secondary);
+          color: var(--font-main);
+
+          &::placeholder{
+            color: var(--background-tertiary);
+          }
+        }
+      }
+    }
+
+    > div.checkbox{
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    > input[type="submit"]{
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      background-color: var(--button-main);
+      font-size: 1rem;
+      font-weight: bold;
+
+      &:hover{
+        cursor: pointer;
+        background-color: var(--accent-main);
+      }
+    }
+
+    > p{
+      margin: 0;
+      font-size: 1rem;
+
+      > a{
+        text-decoration: none;
+        color: var(--accent-main);
+        font-weight: bold;
+
+        &:hover{
+          color: var(--accent-hover);
+        }
+      }
+    }
+  }
+`;
 
 const Register = () => {
 
@@ -74,14 +162,13 @@ const Register = () => {
           newUser.id = genID();
           newUser.role = 'user';
   
-          if(values.stayLoggedIn){
-            localStorage.setItem('loggedInUser', JSON.stringify(newUser));
-          }
-  
-          setLoggedInUser(newUser as User);
-          addUser(newUser as User);
           setSuccessMsg('Registration complete.');
           setTimeout(() => {
+            if(values.stayLoggedIn){
+              localStorage.setItem('loggedInUser', JSON.stringify(newUser));
+            }
+            setLoggedInUser(newUser as User);
+            addUser(newUser as User);
             navigate('/');
           }, 1000);
         }
@@ -90,88 +177,100 @@ const Register = () => {
   })
 
   return (
-    <section>
+    <StyledSection>
       <h2>Register</h2>
       <form onSubmit={formik.handleSubmit}>
         <div>
-          <label htmlFor="username">Username:</label>
-          <input
-            type="text"
-            id='username' name='username'
-            onBlur={formik.handleBlur}
-            onChange={formik.handleChange}
-            placeholder='enter your username...'
-          />
+          <div>
+            <label htmlFor="username">Username:</label>
+            <input
+              type="text"
+              id='username' name='username'
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+              placeholder='enter your username...'
+            />
+          </div>
           {
-            formik.errors.username && formik.touched.username && <p style={{ color: "red" }}>{formik.errors.username}</p>
+            formik.errors.username && formik.touched.username && <p className="errorMsg">{formik.errors.username}</p>
           }
         </div>
         <div>
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            id='email' name='email'
-            onBlur={formik.handleBlur}
-            onChange={formik.handleChange}
-            placeholder='enter your email...'
-          />
+          <div>
+            <label htmlFor="email">Email:</label>
+            <input
+              type="email"
+              id='email' name='email'
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+              placeholder='enter your email...'
+            />
+          </div>
           {
-            formik.errors.email && formik.touched.email && <p style={{ color: "red" }}>{formik.errors.email}</p>
+            formik.errors.email && formik.touched.email && <p className="errorMsg">{formik.errors.email}</p>
           }
         </div>
         <div>
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id='password' name='password'
-            onBlur={formik.handleBlur}
-            onChange={formik.handleChange}
-            placeholder='enter your password...'
-          />
+          <div>
+            <label htmlFor="password">Password:</label>
+            <input
+              type="password"
+              id='password' name='password'
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+              placeholder='enter your password...'
+            />
+          </div>
           {
-            formik.errors.password && formik.touched.password && <p style={{ color: "red" }}>{formik.errors.password}</p>
+            formik.errors.password && formik.touched.password && <p className="errorMsg">{formik.errors.password}</p>
           }
         </div>
         <div>
-          <label htmlFor="passwordRepeat">Confirm Password:</label>
-          <input
-            type="password"
-            id='passwordRepeat' name='passwordRepeat'
-            onBlur={formik.handleBlur}
-            onChange={formik.handleChange}
-            placeholder='enter your password...'
-          />
+          <div>
+            <label htmlFor="passwordRepeat">Confirm Password:</label>
+            <input
+              type="password"
+              id='passwordRepeat' name='passwordRepeat'
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+              placeholder='enter your password...'
+            />
+          </div>
           {
-            formik.errors.passwordRepeat && formik.touched.passwordRepeat && <p style={{ color: "red" }}>{formik.errors.passwordRepeat}</p>
+            formik.errors.passwordRepeat && formik.touched.passwordRepeat && <p className="errorMsg">{formik.errors.passwordRepeat}</p>
           }
         </div>
         <div>
-          <label htmlFor="avatar">Avatar:</label>
-          <input
-            type="url"
-            id='avatar' name='avatar'
-            onBlur={formik.handleBlur}
-            onChange={formik.handleChange}
-            placeholder='enter your avatar...'
-          />
+          <div>
+            <label htmlFor="avatar">Avatar:</label>
+            <input
+              type="url"
+              id='avatar' name='avatar'
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+              placeholder='enter your avatar...'
+            />
+          </div>
           {
-            formik.errors.avatar && formik.touched.avatar && <p style={{ color: "red" }}>{formik.errors.avatar}</p>
+            formik.errors.avatar && formik.touched.avatar && <p className="errorMsg">{formik.errors.avatar}</p>
           }
         </div>
         <div>
-          <label htmlFor="dob">Date of birth:</label>
-          <input
-            type="date"
-            id='dob' name='dob'
-            onBlur={formik.handleBlur}
-            onChange={formik.handleChange}
-            placeholder='enter your date of birth...'
-          />
+          <div>
+            <label htmlFor="dob">Date of birth:</label>
+            <input
+              type="date"
+              id='dob' name='dob'
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+              placeholder='enter your date of birth...'
+            />
+          </div>
           {
-            formik.errors.dob && formik.touched.dob && <p style={{ color: "red" }}>{formik.errors.dob}</p>
+            formik.errors.dob && formik.touched.dob && <p className="errorMsg">{formik.errors.dob}</p>
           }
         </div>
-        <div>
+        <div className='checkbox'>
           <input
             type="checkbox" 
             name='stayLoggedIn' id='stayLoggedIn'
@@ -182,13 +281,14 @@ const Register = () => {
         </div>
         <input type="submit" />
         {
-          error && <p style={{ color: "red" }}>{error}</p>
+          error && <p className="errorMsg">{error}</p>
         }
         {
-          successMsg && <p style={{ color: "green" }}>{successMsg}</p>
+          successMsg && <p className="successMsg">{successMsg}</p>
         }
+        <p>Have an account already? Click <Link to='/login'>here</Link> to login.</p>
       </form>
-    </section>
+    </StyledSection>
   );
 }
  
