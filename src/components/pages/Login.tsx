@@ -43,9 +43,10 @@ const StyledSection = styled.section`
       > div{
         display: flex;
         gap: 5px;
+        width: 100%;
 
         > input{
-          width: 100%;
+          flex-grow: 1;
           border: none;
           background-color: var(--background-secondary);
           color: var(--font-main);
