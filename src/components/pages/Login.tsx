@@ -126,13 +126,13 @@ const Login = () => {
           bcrypt.compareSync(values.password, user.password)
         )
         if(foundUser){
-          if(values.stayLoggedIn){
-            localStorage.setItem('loggedInUser', JSON.stringify(foundUser));
-          }
-          setLoggedInUser(foundUser);
-          setSuccessMsg('Login successful.');
-  
+          setSuccessMsg(`Welcome back ${foundUser.username}.`);
+          
           setTimeout(() => {
+            if(values.stayLoggedIn){
+              localStorage.setItem('loggedInUser', JSON.stringify(foundUser));
+            }
+            setLoggedInUser(foundUser);
             navigate('/');
           }, 1000);
         } else {
