@@ -1,5 +1,7 @@
-# React_atsiskaitymas
+# React Atsiskaitymas
 
-Paulius Karbauskas
+Vartotojų info - `userPasswords.env` faile.
 
-2025-04-17
+### Projekto autorius
+**Paulius Karbauskas**
+2025-04-17/18
