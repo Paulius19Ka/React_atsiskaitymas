@@ -1,10 +1,24 @@
 :root {
+  --font-main: #ffffff;
+  --font-hover: #cacaca;
+  --font-active: #a1a1a1;
+
+  --background-main: #202128;
+  --background-secondary: #3c3e4c;
+  --background-tertiary: #63667b;
+
+  --button-main: #808080;
+  --button-hover: #bdbdbd;
+
+  --accent-main: #6ed6ff;
+
+
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
+  color: #ffffffde;
   background-color: #242424;
 }
 
