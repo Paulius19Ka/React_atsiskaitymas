@@ -7,6 +7,88 @@ import { useContext, useState } from 'react';
 import UsersContext from '../contexts/UsersContext';
 import { PostsContextTypes, UsersContextTypes } from '../../types';
 import PostsContext from '../contexts/PostsContext';
+import styled from 'styled-components';
+
+const StyledSection = styled.section`
+  > h2{
+    text-align: center;
+    font-size: 1.6rem;
+    margin: 10px 0px;
+  }
+
+  p.errorMsg, p.successMsg{
+    margin: 0;
+    font-size: 0.8rem;
+  }
+
+  p.errorMsg{
+    color: var(--message-error);
+    text-align: start;
+  }
+
+  p.successMsg{
+    color: var(--message-success);
+  }
+
+  > form{
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    > div{
+      width: 350px;
+      
+      > div{
+        display: flex;
+        gap: 5px;
+        width: 100%;
+
+        > input, textarea{
+          flex-grow: 1;
+          border: none;
+          background-color: var(--background-secondary);
+          color: var(--font-main);
+
+          &::placeholder{
+            color: var(--background-tertiary);
+          }
+        }
+      }
+    }
+
+    > input[type="submit"]{
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      background-color: var(--button-main);
+      font-size: 1rem;
+      font-weight: bold;
+
+      &:hover{
+        cursor: pointer;
+        background-color: var(--accent-main);
+      }
+    }
+
+    > p{
+      margin: 0;
+      font-size: 1rem;
+
+      > a{
+        text-decoration: none;
+        color: var(--accent-main);
+        font-weight: bold;
+
+        &:hover{
+          color: var(--accent-hover);
+        }
+      }
+    }
+  }
+`;
 
 const AddPost = () => {
 
@@ -44,10 +126,10 @@ const AddPost = () => {
         values.id = genID();
         values.posterId = loggedInUser?.id;
         values.dateOfPost = new Date().toString();
-        addPost(values);
         setSuccessMsg('Post added sussessfully.');
         
         setTimeout(() => {
+          addPost(values);
           navigate('/');
         }, 1000);
       }
@@ -55,53 +137,59 @@ const AddPost = () => {
   })
 
   return (
-    <section>
+    <StyledSection>
       <h2>AddPost</h2>
       <form onSubmit={formik.handleSubmit}>
         <div>
-          <label htmlFor="title">Title:</label>
-          <input
-            type="text"
-            id='title' name='title'
-            onBlur={formik.handleBlur}
-            onChange={formik.handleChange}
-            placeholder='enter the title...'
-          />
+          <div>
+            <label htmlFor="title">Title:</label>
+            <input
+              type="text"
+              id='title' name='title'
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+              placeholder='enter the title...'
+            />
+          </div>
           {
-            formik.errors.title && formik.touched.title && <p style={{ color: "red" }}>{formik.errors.title}</p>
+            formik.errors.title && formik.touched.title && <p className="errorMsg">{formik.errors.title}</p>
           }
         </div>
         <div>
-          <label htmlFor="picture">Picture:</label>
-          <input
-            type="url"
-            id='picture' name='picture'
-            onBlur={formik.handleBlur}
-            onChange={formik.handleChange}
-            placeholder='enter a picture url...'
-          />
+          <div>
+            <label htmlFor="picture">Picture:</label>
+            <input
+              type="url"
+              id='picture' name='picture'
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+              placeholder='enter a picture url...'
+            />
+          </div>
           {
-            formik.errors.picture && formik.touched.picture && <p style={{ color: "red" }}>{formik.errors.picture}</p>
+            formik.errors.picture && formik.touched.picture && <p className="errorMsg">{formik.errors.picture}</p>
           }
         </div>
         <div>
-          <label htmlFor="content">Post Content:</label>
-          <textarea
-            id='content' name='content'
-            onBlur={formik.handleBlur}
-            onChange={formik.handleChange}
-            placeholder='enter the content...'
-          />
+          <div>
+            <label htmlFor="content">Post Content:</label>
+            <textarea
+              id='content' name='content'
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+              placeholder='enter the content...'
+            />
+          </div>
           {
-            formik.errors.content && formik.touched.content && <p style={{ color: "red" }}>{formik.errors.content}</p>
+            formik.errors.content && formik.touched.content && <p className="errorMsg">{formik.errors.content}</p>
           }
         </div>
         <input type="submit" />
         {
-          successMsg && <p style={{ color: "green" }}>{successMsg}</p>
+          successMsg && <p className='successMsg'>{successMsg}</p>
         }
       </form>
-    </section>
+    </StyledSection>
   );
 }
  
