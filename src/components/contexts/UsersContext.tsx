@@ -84,6 +84,7 @@ const UsersProvider = ({ children }: ChildProp) => {
   }
 
   const savePostToggle = (id: Post['id']) => {
+    
     if(loggedInUser){
       const postSaved = loggedInUser.savedPosts.includes(id);
       const newSavedPosts = postSaved ?

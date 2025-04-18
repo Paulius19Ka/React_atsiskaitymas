@@ -6,11 +6,11 @@ import { BrowserRouter } from 'react-router';
 import { PostsProvider } from './components/contexts/PostsContext.tsx';
 
 createRoot(document.getElementById('root') as HTMLDivElement).render(
-  <UsersProvider>
-    <PostsProvider>
+  <PostsProvider>
+    <UsersProvider>
       <BrowserRouter>
         <App />
       </BrowserRouter>
-    </PostsProvider>
-  </UsersProvider>
+    </UsersProvider>
+  </PostsProvider>
 )

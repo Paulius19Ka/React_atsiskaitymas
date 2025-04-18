@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 
 import PostsContext from "../contexts/PostsContext";
 import { PostsContextTypes } from "../../types";
@@ -6,15 +6,7 @@ import PostCard from "../UI/molecules/PostCard";
 
 const Home = () => {
 
-  const { posts } = useContext(PostsContext) as PostsContextTypes;
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    if(posts !== undefined && posts !== null && posts.length > 0){
-      setLoading(false);
-    };
-  }, [posts]);
-
+  const { posts, loading } = useContext(PostsContext) as PostsContextTypes;
 
   return (
     <section>
