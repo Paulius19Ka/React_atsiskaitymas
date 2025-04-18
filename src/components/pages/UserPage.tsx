@@ -41,9 +41,10 @@ const UserPage = () => {
           !loggedInUser || loading ?
           <img src='/media/loadingCircle.gif' alt='loading circle animation' /> :
           posts.length === 0 ?
-          <p>No posts to display</p> :
+          <p>No posts exist</p> :
           loggedInUser.savedPosts?.length === 0 ?
           <p>No saved posts</p> :
+          // filter saved posts, sort by date, then map
           posts.filter(post => loggedInUser.savedPosts.includes(post.id))
           .sort((a, b) => new Date(b.dateOfPost).getTime() - new Date(a.dateOfPost).getTime())
           .map(post =>

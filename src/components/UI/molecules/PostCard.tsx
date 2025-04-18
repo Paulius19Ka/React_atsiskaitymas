@@ -120,7 +120,7 @@ const PostCard = ({ data }: Props) => {
           }
           <span>{creator?.username}</span>
         </div>
-        <span>{data.dateOfPost.substring(0, 10)}</span>
+        <span>{data.dateOfPost.substring(0, 10)}, {data.dateOfPost.substring(11, 15)}</span>
       </div>
       <div className="cardContent">
         <span>{data.title}</span>

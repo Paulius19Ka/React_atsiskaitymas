@@ -77,6 +77,7 @@ const UsersProvider = ({ children }: ChildProp) => {
         setLoggedInUser(updatedUser);
         localStorage.setItem('loggedInUser', JSON.stringify(updatedUser));
 
+        // patch the user with updated saved posts
         fetch(`http://localhost:8080/users/${storedUser.id}`, {
           method: "PATCH",
           headers: {
@@ -88,7 +89,7 @@ const UsersProvider = ({ children }: ChildProp) => {
         setLoggedInUser(storedUser);
       };
     };
-  }, [posts])
+  }, [posts]);
 
   const addUser = (newUser: User) => {
     fetch(`http://localhost:8080/users`, {
