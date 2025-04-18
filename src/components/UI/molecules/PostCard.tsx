@@ -83,6 +83,17 @@ const StyledDiv = styled.div`
 
   @media (min-width: 768px){
     width: 400px;
+    height: 450px;
+
+    > div.cardContent{
+
+      > p{
+        height: 70px;
+        overflow-y: auto;
+        scrollbar-color: var(--accent-main) var(--background-secondary);
+        scrollbar-width: thin;
+      }
+    }
   }
 `;
 

@@ -3,6 +3,30 @@ import UsersContext from "../contexts/UsersContext";
 import { PostsContextTypes, UsersContextTypes } from "../../types";
 import PostsContext from "../contexts/PostsContext";
 import PostCard from "../UI/molecules/PostCard";
+import styled from "styled-components";
+
+const StyledSection = styled.section`
+  > div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  > h2{
+    text-align: center;
+    font-size: 1.6rem;
+    margin: 10px 0px;
+  }
+
+  @media (min-width: 768px){
+    > div{
+      flex-wrap: wrap;
+      flex-direction: row;
+      justify-content: center;
+    }
+  }
+`;
 
 const UserPage = () => {
 
@@ -10,9 +34,8 @@ const UserPage = () => {
   const { posts, loading } = useContext(PostsContext) as PostsContextTypes;
 
   return (
-    <section>
-      <h2>UserPage</h2>
-      <span>{loggedInUser?.username}</span>
+    <StyledSection>
+      <h2>{loggedInUser?.username}'s Saved Posts</h2>
       <div>
         {
           !loggedInUser || loading ?
@@ -29,7 +52,7 @@ const UserPage = () => {
           )
         }
       </div>
-    </section>
+    </StyledSection>
   );
 }
  

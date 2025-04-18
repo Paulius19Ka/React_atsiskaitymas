@@ -15,17 +15,9 @@ const StyledSection = styled.section`
 
   @media (min-width: 768px){
     > div{
-      display: flex;
-      
-    }
-  }
-
-  @media (min-width: 1000px){
-    > div{
-      display: grid;
-      grid-template-columns: 400px 400px 400px;
+      flex-wrap: wrap;
+      flex-direction: row;
       justify-content: center;
-      
     }
   }
 `;
